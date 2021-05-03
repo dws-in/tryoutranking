@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/jadwalto', 'JadwalTOController@getJadwal');
+
+Route::get('/buatto', 'BuatTOController@buatTO');
+Route::post('/storeto','BuatTOController@storeTO');
