@@ -2,65 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTryoutRequest;
+use App\Http\Requests\UpdateTryoutRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Tryout;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class TryoutController extends Controller
 {
   public function index()
   {
-    $tryouts = DB::table('tryouts')->select('id', 'name', 'description', 'held')->where('user_id', auth()->user()->id)->get();
-    return view('dashboard', compact('tryouts'));
+    abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    $tryouts = Tryout::all();
+
+    return view('tryouts.index', compact('tryouts'));
   }
 
-  public function add()
+  public function create()
   {
-    return view('tryout-add');
+    abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    return view('tryouts.create');
   }
 
-  public function create(Request $request)
+  public function store(StoreTryoutRequest $request)
   {
-    $this->validate($request, [
-      'name' => 'required',
-      'description' => 'required',
-      'held' => 'required'
-    ]);
-    $tryout = new Tryout();
-    $tryout->name = $request->name;
-    $tryout->description = $request->description;
-    $tryout->held = $request->held;
-    $tryout->user_id = auth()->user()->id;
-    $tryout->save();
-    return redirect('/dashboard');
+    Tryout::create($request->validated());
+
+    return redirect()->route('tryouts.index');
+  }
+
+  public function show(Tryout $tryout)
+  {
+      abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+      return view('tryouts.show', compact('tryout'));
   }
 
   public function edit(Tryout $tryout)
   {
+      abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-    if (auth()->user()->id == $tryout->user_id) {
-      return view('tryout-edit', compact('tryout'));
-    } else {
-      return redirect('/dashboard');
-    }
+      return view('tryouts.edit', compact('tryout'));
   }
 
-  public function update(Request $request, Tryout $tryout)
+  public function update(UpdateTryoutRequest $request, Tryout $tryout)
   {
-    if (isset($_POST['delete'])) {
+      $tryout->update($request->validated());
+
+      return redirect()->route('tryouts.index');
+  }
+
+  public function destroy(Tryout $tryout)
+  {
+      abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
       $tryout->delete();
-      return redirect('/dashboard');
-    } else {
-      $this->validate($request, [
-        'name' => 'required',
-        'description' => 'required',
-        'held' => 'required'
-      ]);
-      $tryout->name = $request->name;
-      $tryout->description = $request->description;
-      $tryout->held = $request->held;
-      $tryout->save();
-      return redirect('/dashboard');
-    }
+
+      return redirect()->route('tryouts.index');
   }
 }

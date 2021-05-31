@@ -10,6 +10,16 @@ use App\Models\Score;
 
 class Tryout extends Model
 {
+  
+  use HasFactory;
+
+  protected $fillable = [
+    'name',
+    'description',
+    'held',
+    'user_id',
+  ];
+  
   public function user()
   {
     return $this->belongsTo(User::class);

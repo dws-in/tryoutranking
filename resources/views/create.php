@@ -1,16 +1,16 @@
 <x-app-layout>
   <x-slot name="header">
     <h1 class="font-semibold text-gray-800 leading-tight" style="font-size: xx-large;">
-      {{ __('Submit a Support Request') }}
+      'Submit a Support Request'
     </h1>
     <p style="font-size: small;">Fill out the form below and TryoutRanking support will get back to you within 24 hours.</p>
   </x-slot>
 
   <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
 
-        <form method="POST" action="/support">
+        <form method="POST" action="{{ route('support.store') }}">
 
           <div class="form-group">
             <span class="font-medium">Your email</span>
