@@ -57,6 +57,12 @@
                                 </tr>
                             </table>
                         </div>
+                        <div class="form-group pt-3 float-left">
+                             <a href="{{ route('registerto.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounde">Daftar</a>
+                        </div>
+                        <div class="form-group pt-3 float-right">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Score</button>
+                        </div>
                     </div>
                 </div>
             </div>
