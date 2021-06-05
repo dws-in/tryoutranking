@@ -19,9 +19,9 @@ class StoreSupportRequest extends FormRequest
                 'required', 'email',
             ],
             'description' => [
-                'required', 'text',
+                'required',
             ]
-            
+
         ];
     }
 }
