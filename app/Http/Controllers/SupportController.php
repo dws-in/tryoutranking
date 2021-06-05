@@ -13,6 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SupportController extends Controller
 {
+
+    public function index(){
+        abort_if(Gate::denies('support_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('support.create');
+    }
+
   public function create()
   {
     abort_if(Gate::denies('support_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');

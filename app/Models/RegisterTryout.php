@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class RegisterTryout extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'nama_lengkap',
+        'asal_sekolah',
+        'tahun_lulus',
+        'phone_number'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function tryout()
+    {
+        return $this->belongsTo(Tryout::class);
+    }
+}
