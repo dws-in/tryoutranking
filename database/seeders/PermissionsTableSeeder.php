@@ -24,7 +24,7 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 4,
-                'title' => 'register_access',
+                'title' => 'register-to_access',
             ],
         ];
 

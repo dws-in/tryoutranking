@@ -5,13 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RegisterTryout extends Model
+use App\Models\User;
+use App\Models\Tryout;
+
+class RegisterTO extends Model
 {
     use HasFactory;
+    
+    protected $table = 'register_tryouts';
     protected $fillable = [
-        'nama_lengkap',
-        'asal_sekolah',
-        'tahun_lulus',
+        'user_name',
+        'school_name',
+        'graduation_date',
         'phone_number'
     ];
 

@@ -10,6 +10,9 @@ use App\Models\Tryout;
 
 class Score extends Model
 {
+  use HasFactory;
+
+  protected $table = 'scores';
   public function user()
   {
     return $this->belongsTo(User::class);

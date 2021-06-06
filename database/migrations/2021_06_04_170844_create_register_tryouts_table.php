@@ -6,28 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateRegisterTryoutsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('register_tryouts', function (Blueprint $table) {
-            $table->id();
-            $table->string("nama_lengkap");
-            $table->string("asal_sekolah");
-            $table->string("tahun_lulus");
-            $table->string("phone_number")->unique();
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned()->index()->default(3);
+            $table->bigInteger('tryout_id')->unsigned()->index()->default(1);
+            $table->string("user_name");
+            $table->string("school_name");
+            $table->date("graduation_date");
+            $table->string("phone_number");
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('register_tryouts');
