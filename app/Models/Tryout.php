@@ -13,6 +13,8 @@ class Tryout extends Model
   
   use HasFactory;
 
+  protected $table = 'tryouts';
+
   protected $fillable = [
     'name',
     'description',
