@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\QRCodeServiceInterface;
+use App\Services\QRCodeServiceLibrary1;
+use App\Services\QRCodeServiceLibrary2;
 use Illuminate\Support\ServiceProvider;
 
 class QRCodeServiceProvider extends ServiceProvider
@@ -23,6 +26,7 @@ class QRCodeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //
         $this->app->bind(QRCodeServiceInterface::class, QRCodeServiceLibrary1::class);
     }
 }

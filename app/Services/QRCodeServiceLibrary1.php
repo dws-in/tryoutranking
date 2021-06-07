@@ -8,7 +8,7 @@ use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 
-class QRCodeServiceLibrary1 implements QRCodeServiceInterface
+class QRCodeServiceLibrary1 implements QRCodeServiceInterface // Endroid
 {
     public function generate($data)
     {
@@ -16,7 +16,7 @@ class QRCodeServiceLibrary1 implements QRCodeServiceInterface
             ->writer(new PngWriter())
             ->writerOptions([])
             ->data($data)
-            ->encoding(new Encoding('utf-8'))
+            ->encoding(new Encoding('UTF-8'))
             ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
             ->size(200)
             ->margin(10)

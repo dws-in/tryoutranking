@@ -30,8 +30,14 @@ class RegisterTOController extends Controller
         $now = Carbon::now()->toDateTimeString();
         $qrcode = $this->qrCode->generate("$request->id . $now");
 
+        /*
+        * use for endroid library
+        */
         return view('register-to.qrcode-lib1', ['qrcode' => $qrcode]);
 
+        /*
+        * use for simplesoftwareIO library
+        */
         // return view('register-to.qrcode-lib2', ['qrcode' => $qrcode]);
 
     }

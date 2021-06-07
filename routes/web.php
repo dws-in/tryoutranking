@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QRController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterTOController;
 use App\Http\Controllers\TryoutController;
