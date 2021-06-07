@@ -177,6 +177,10 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        /*
+        * Adding new provider
+        */
+        App\Providers\QRCodeServiceProvider::class,
     ],
 
     /*
