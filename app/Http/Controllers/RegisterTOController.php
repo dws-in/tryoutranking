@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\RegisterTO;
 use Symfony\Component\HttpFoundation\Response;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Services\QRCodeServiceInterface;
 use Carbon\Carbon;
 
 class RegisterTOController extends Controller
 {
+    protected $qrCode;
+
+    public function __construct(QRCodeServiceInterface $qrCode)
+    {
+        $this->qrCode = $qrCode;
+    }
+
     public function create(){
 
         return view('register-to.create');
@@ -20,8 +28,18 @@ class RegisterTOController extends Controller
         RegisterTO::create($request->validated());
 
         $now = Carbon::now()->toDateTimeString();
-        $qrcode = QrCode::size(200)->style('round')->generate("$request->id . $now");
-        return view('register-to.qrcode', ['qrcode' => $qrcode]);
+        $qrcode = $this->qrCode->generate("$request->id . $now");
+
+        /*
+        * use for endroid library
+        */
+        return view('register-to.qrcode-lib1', ['qrcode' => $qrcode]);
+
+        /*
+        * use for simplesoftwareIO library
+        */
+        // return view('register-to.qrcode-lib2', ['qrcode' => $qrcode]);
+
     }
 
 }

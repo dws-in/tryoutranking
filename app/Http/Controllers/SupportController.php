@@ -30,11 +30,5 @@ class SupportController extends Controller
     $support = Support::create($request->validated());
 
     return redirect()->route('support.create')->with('alert', 'Email sent successfully!');
-
-    // if ($support->save()) {
-    //   $support->id = DB::table('supports')->count();
-    //   Mail::to($support->email)->send(new SupportMail($support->id, $support->email, $support->description));
-    //   return redirect()->route('support.create')->with('alert', 'Email sent successfully!');
-    // }
   }
 }
