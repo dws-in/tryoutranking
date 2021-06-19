@@ -16,17 +16,17 @@ class CreateScoresTable extends Migration
     Schema::create('scores', function (Blueprint $table) {
       $table->id();
       $table->bigInteger('tryout_id')->unsigned()->index();
-      $table->integer('user_id')->unsigned()->index();
-      $table->float('indonesia');
-      $table->float('english');
-      $table->float('mathematic');
-      $table->float('physic');
-      $table->float('biology');
-      $table->float('chemistry');
-      $table->float('geography');
-      $table->float('economic');
-      $table->float('history');
-      $table->float('sosiology');
+      $table->bigInteger('user_id')->unsigned()->index();
+      $table->float('indonesia')->nullable();
+      $table->float('english')->nullable();
+      $table->float('mathematic')->nullable();
+      $table->float('physic')->nullable();
+      $table->float('biology')->nullable();
+      $table->float('chemistry')->nullable();
+      $table->float('geography')->nullable();
+      $table->float('economy')->nullable();
+      $table->float('history')->nullable();
+      $table->float('sociology')->nullable();
       $table->timestamps();
     });
   }

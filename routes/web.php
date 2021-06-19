@@ -18,8 +18,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function() {
 
 Route::group(['middleware' => 'auth'], function() {
   Route::resource('tryouts', TryoutController::class);
+  Route::resource('register-to', RegisterTOController::class);
+  Route::resource('scores', ScoreController::class);
   Route::resource('support', SupportController::class);
   Route::resource('users', UserController::class);
-  Route::resource('register-to', RegisterTOController::class);
 });
 

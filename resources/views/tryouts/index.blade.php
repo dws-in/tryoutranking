@@ -1,14 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Tryout List
-        </h2>
+        <h1 class="font-semibold text-gray-800 leading-tight" style="font-size: xx-large;">
+            {{ __('Tryouts List') }}
+        </h1>
+        <p style="font-size: small;">Never join a tryout? Let's find a tryout that match your need!</p>
     </x-slot>
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="block mb-8">
-                <a href="{{ route('tryouts.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Tryout</a>
+                <a href="{{ route('tryouts.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add</a>
             </div>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

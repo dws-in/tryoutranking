@@ -18,7 +18,7 @@ class CreateTryoutsTable extends Migration
       $table->char('name', 50);
       $table->text('description');
       $table->dateTime('held');
-      $table->integer('user_id')->unsigned()->index();
+      $table->bigInteger('user_id')->unsigned()->index();
       $table->timestamps();
     });
   }

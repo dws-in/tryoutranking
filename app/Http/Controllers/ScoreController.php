@@ -2,17 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreScoreRequest;
+use App\Http\Requests\UpdateScoreRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Score;
 use App\Models\Tryout;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class ScoreController extends Controller
 {
   public function index(Tryout $tryout)
   {
-    $scores = DB::table('scores')->select('id', 'user_id', 'indonesia', 'english', 'mathematic', 'physic', 'biology', 'chemistry', 'geography', 'economy', 'history', 'sociology')->where('tryout_id', $tryout->id)->get();
-    return view('ranking', compact('scores', 'tryout'));
+    // abort_if(Gate::denies('scores_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    $scores = Score::all();
+
+    return view('scores.index', compact('scores'));
+  }
+
+  public function store(StoreScoreRequest $request)
+  {
+    Score::create($request->validated());
+
+    return redirect()->route('scores.index');
+  }
+
+  public function show(Score $score)
+  {
+      // abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+      return view('scores.show', compact('score'));
   }
 
   public function add(Tryout $tryout)

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             PermissionRoleTableSeeder::class,
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
+            TryoutsTableSeeder::class,
+            ScoresTableSeeder::class
         ]);
     }
 }
