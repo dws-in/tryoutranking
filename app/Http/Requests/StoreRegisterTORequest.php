@@ -15,6 +15,12 @@ class StoreRegisterTORequest extends FormRequest
     public function rules()
     {
         return [
+            // 'user_id' => [
+            //     'exists:users,id',
+            // ],
+            'tryout_id' => [
+                'required'|'exists:tryouts,id',
+            ],
             'user_name' => [
                 'required',
             ],
@@ -26,7 +32,10 @@ class StoreRegisterTORequest extends FormRequest
             ],
             'phone_number' => [
                 'required',
-            ]
+            ],
+             'cluster_id' => [
+                'required',
+            ],
         ];
     }
 }

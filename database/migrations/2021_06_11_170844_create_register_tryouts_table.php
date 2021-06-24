@@ -9,15 +9,17 @@ class CreateRegisterTryoutsTable extends Migration
     public function up()
     {
         Schema::create('register_tryouts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned()->index()->default(3);
-            $table->bigInteger('tryout_id')->unsigned()->index()->default(1);
+            $table->id();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('tryout_id')->references('id')->on('tryouts')->cascadeOnDelete();
             $table->string("user_name");
             $table->string("school_name");
             $table->date("graduation_date");
             $table->string("phone_number");
+            $table->foreignId('cluster_id')->references('id')->on('clusters')->cascadeOnDelete();
             $table->timestamps();
         });
+
     }
 
     public function down()

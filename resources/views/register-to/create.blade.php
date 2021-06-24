@@ -10,7 +10,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
 
-       <form action="{{ route('register-to.store') }}" method="post">
+       <form action="{{ route('register-to.store', $tryout->id) }}" method="POST">
             {{ csrf_field() }}
 
         <div class="form-group">
@@ -45,6 +45,20 @@
             <span class="text-danger">{{ $errors->first('phone_number') }}</span>
             @endif
         </div>
+
+        {{-- Cluster --}}
+        <div class="form-group">
+            <label for="name" class="col-md-4 col-form-label">Cluster</label>
+            <div class="col-md-6">
+                <select name="cluster_id" id="cluster" class="form-control">
+                    <option value="">== Select Cluster ==</option>
+                    @foreach ($clusters as $cluster)
+                        <option value="{{ $cluster->id}}">{{ $cluster->cluster_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
          <div class="form-group pt-3 float-right">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
         </div>
