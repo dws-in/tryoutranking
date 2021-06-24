@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Gate;
 
 class StoreTryoutRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return Gate::allows('tryouts_access');
+    }
+
     public function rules()
     {
         return [
@@ -20,13 +25,8 @@ class StoreTryoutRequest extends FormRequest
                 'required', 'string',
             ],
             'user_id' => [
-                'required', 'string',
+                'required'|'exists:users,id'
             ],
         ];
-    }
-
-    public function authorize()
-    {
-        return Gate::allows('tryouts_access');
     }
 }

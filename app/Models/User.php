@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Tryout;
 use App\Models\Score;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -77,7 +78,7 @@ class User extends Authenticatable
 
   public function roles()
   {
-    return $this->belongsTo(Role::class);
+    return $this->belongsTo(Role::class, 'role_id');
   }
 
   public function tryout()
@@ -85,7 +86,7 @@ class User extends Authenticatable
     return $this->hasMany(Tryout::class);
   }
 
-  public function registerTryout()
+  public function registerTO()
   {
       return $this->hasMany(RegisterTO::class);
   }
@@ -94,4 +95,5 @@ class User extends Authenticatable
   {
     return $this->hasMany(Score::class);
   }
+
 }

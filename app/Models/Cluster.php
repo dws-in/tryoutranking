@@ -17,4 +17,9 @@ class Cluster extends Model
     {
         return $this->hasMany(Major::class);
     }
+
+    public function registerTo()
+    {
+        return $this->hasOne(RegisterTO::class);
+    }
 }

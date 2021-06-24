@@ -40,9 +40,6 @@ class RegisterTOController extends Controller
 
     public function create($id){
 
-        // $tryout = DB::table('tryouts')
-        //     ->where('id', $id)
-        //     ->first();
         $tryout = Tryout::find($id);
         $clusters = Cluster::all();
 

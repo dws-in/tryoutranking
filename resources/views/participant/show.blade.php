@@ -1,17 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           My Tryout List
+            Participant List
         </h2>
     </x-slot>
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
-            @can('tryouts_access')
-            <div class="block mb-8">
-                <a href="{{ route('tryouts.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Tryout</a>
-            </div>
-            @endcan
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -26,10 +21,10 @@
                                         Name
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Description
+                                        School Name
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Held on
+                                        Graduation Date
                                     </th>
                                     <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Actions
@@ -37,41 +32,28 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($tryouts as $tryout)
+                                @foreach ($participants as $participant)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->id }}
+                                            {{ $participant->id }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->name }}
+                                            {{ $participant->user_name }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->description }}
+                                            {{ $participant->school_name }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->held }}
+                                            {{ $participant->graduation_date }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.show', $tryout->id) }}" class="">View</a>
+                                                <a href="{{ route('scores.index', $participant->tryout_id) }}" class="">Score</a>
                                             </span>
-                                            @can('tryouts_access')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.edit', $tryout->id) }}" class="">Edit</a>
-                                            </span>
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                <a href="{{ route('participant.show', $tryout->id) }}" class="">Participant</a>
-                                            </span>
-                                            <form class="inline-block" action="{{ route('tryouts.destroy', $tryout->id) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800" value="Delete">
-                                            </form>
-                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

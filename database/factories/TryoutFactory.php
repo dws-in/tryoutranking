@@ -24,7 +24,7 @@ class TryoutFactory extends Factory
     {
         return [
             'name' => $this->faker->company. " Tryout",
-            'description' => $this->faker->text(),
+            'description' => $this->faker->text(20),
             'held' => $this->faker->dateTime(),
             'user_id' => rand(1,10),
         ];

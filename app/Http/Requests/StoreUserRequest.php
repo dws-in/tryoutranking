@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Gate;
 
 class StoreUserRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return Gate::allows('users_access');
+    }
+
     public function rules()
     {
         return [
@@ -31,8 +36,5 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
-    public function authorize()
-    {
-        return Gate::allows('user_access');
-    }
+
 }

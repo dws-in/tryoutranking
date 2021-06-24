@@ -32,38 +32,38 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($tryouts as $tryout)
+                                @foreach ($tryouts as $list)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->tryout->id }}
+                                            {{ $list->id }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->tryout->name }}
+                                            {{ $list->name }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->tryout->description }}
+                                            {{ $list->description }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->tryout->held }}
+                                            {{ $list->held }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.show', $tryout->tryout->id) }}" class="">View</a>
+                                                <a href="{{ route('tryouts.show', $list->id) }}" class="">View</a>
                                             </span>
-                                            @can('tryouts_access')
+                                            {{-- @can('tryouts_access')
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 <a href="{{ route('tryouts.edit', $tryout->tryout->id) }}" class="">Edit</a>
                                             </span>
-                                            <form class="inline-block" action="{{ route('tryouts.destroy', $tryout->tryout->id) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
+                                            <form class="inline-block" action="{{ route('tryouts.destroy', ['id' => $tryout->id]) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800" value="Delete">
                                             </form>
-                                            @endcan
+                                            @endcan --}}
                                         </td>
                                     </tr>
                                 @endforeach

@@ -8,28 +8,30 @@ use Illuminate\Http\Request;
 use App\Models\Tryout;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TryoutController extends Controller
 {
     public function index()
     {
     //  abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $user = Auth::user()->id;
         $tryouts = Tryout::all();
-
         return view('tryouts.index', compact('tryouts'));
     }
 
     public function create()
     {
-        abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        //abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('tryouts.create');
     }
 
     public function store(StoreTryoutRequest $request)
     {
-        Tryout::create($request->validated());
+        $user = Auth::user()->id;
+        $data = $request->validated();
+        $data['user_id'] = $user;
+        Tryout::create($data);
 
         return redirect()->route('tryouts.index');
     }

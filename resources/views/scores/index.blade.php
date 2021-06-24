@@ -13,13 +13,14 @@
           <div class="flex-auto text-2xl mb-4">{{$tryout->name}}</div>
 
           <div class="flex-auto text-right mt-2">
-            <a href="/tryout/{{$tryout->id}}/score" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add new Score</a>
+            <a href="{{ route('scores.add', ['id' => $tryout->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add new Score</a>
+            {{-- a href="{{ route('scores.add', $tryout->id) }}"
+            a href="/tryout/{{$tryout->id}}/score" --}}
           </div>
         </div>
         <table class="w-full text-md rounded mb-4">
           <thead>
             <tr class="border-b">
-              <th class="text-left p-3 px-5">Name</th>
               <th class="text-left p-3 px-5">Math</th>
               <th class="text-left p-3 px-5">Indo</th>
               <th class="text-left p-3 px-5">Eng</th>
@@ -37,9 +38,6 @@
           <tbody>
             @foreach($scores as $score)
             <tr class="border-b hover:bg-orange-100">
-              <td class="p-3 px-5">
-                {{$score->user_id}}
-              </td>
               <td class="p-3 px-5">
                 {{$score->mathematic}}
               </td>

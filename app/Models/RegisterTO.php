@@ -25,17 +25,17 @@ class RegisterTO extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function tryout()
     {
-        return $this->belongsTo(Tryout::class);
+        return $this->belongsTo(Tryout::class,'tryout_id');
     }
 
     public function cluster()
     {
-        return $this->hasOne(Cluster::class);
+        return $this->hasOne(Cluster::class, 'cluster_id');
     }
 
 
