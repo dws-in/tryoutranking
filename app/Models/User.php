@@ -21,6 +21,8 @@ class User extends Authenticatable
   use Notifiable;
   use TwoFactorAuthenticatable;
 
+   protected $primaryKey = 'id';
+
   /**
    * The attributes that are mass assignable.
    *
@@ -30,6 +32,7 @@ class User extends Authenticatable
     'name',
     'email',
     'password',
+    'role_id'
   ];
 
   /**
@@ -62,23 +65,29 @@ class User extends Authenticatable
     'profile_photo_url',
   ];
 
-  public function __construct(array $attributes = [])
-  {
-    parent::__construct($attributes);
-    self::created(function(User $user) {
-      if (!$user->roles()->get()->contains(2)) {
-        $user->roles()->attach(2);
-      }
-    });
-  }
+//   public function __construct(array $attributes = [])
+//   {
+//     parent::__construct($attributes);
+//     self::created(function(User $user) {
+//       if (!$user->roles()->get()->contains(3)) {
+//         $user->roles()->attach(3);
+//       }
+//     });
+//   }
+
   public function roles()
   {
-    return $this->belongsToMany(Role::class);
+    return $this->belongsTo(Role::class);
   }
-  
+
   public function tryout()
   {
     return $this->hasMany(Tryout::class);
+  }
+
+  public function registerTryout()
+  {
+      return $this->hasMany(RegisterTO::class);
   }
 
   public function score()

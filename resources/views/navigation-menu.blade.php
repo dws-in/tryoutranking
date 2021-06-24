@@ -6,14 +6,15 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <span class="navbar-text font-bold">TryOutRanking</span>
+                        {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Home') }}
                     </x-jet-nav-link>
                 </div>
                 @can('tryouts_access')
@@ -23,13 +24,11 @@
                         </x-jet-nav-link>
                     </div>
                 @endcan
-                @can('support_access')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('support.create') }}" :active="request()->routeIs('support.*')">
                         {{ __('Support') }}
                         </x-jet-nav-link>
                     </div>
-                @endcan
                 @can('users_access')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('user.*')">
@@ -37,6 +36,11 @@
                         </x-jet-nav-link>
                     </div>
                 @endcan
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('myTryout.index') }}" :active="request()->routeIs('mytryout.*')">
+                        {{ __('my Tryout') }}
+                        </x-jet-nav-link>
+                    </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -59,7 +63,7 @@
                             </button>
                         @endif
                     </x-slot>
-
+11
                     <x-slot name="content">
                         <!-- Account Management -->
                         <div class="block px-4 py-2 text-xs text-gray-400">

@@ -11,56 +11,56 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TryoutController extends Controller
 {
-  public function index()
-  {
-    abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    public function index()
+    {
+    //  abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-    $tryouts = Tryout::all();
+        $tryouts = Tryout::all();
 
-    return view('tryouts.index', compact('tryouts'));
-  }
+        return view('tryouts.index', compact('tryouts'));
+    }
 
-  public function create()
-  {
-    abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    public function create()
+    {
+        abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-    return view('tryouts.create');
-  }
+        return view('tryouts.create');
+    }
 
-  public function store(StoreTryoutRequest $request)
-  {
-    Tryout::create($request->validated());
+    public function store(StoreTryoutRequest $request)
+    {
+        Tryout::create($request->validated());
 
-    return redirect()->route('tryouts.index');
-  }
+        return redirect()->route('tryouts.index');
+    }
 
-  public function show(Tryout $tryout)
-  {
-      abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    public function show(Tryout $tryout)
+    {
+    //   abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-      return view('tryouts.show', compact('tryout'));
-  }
+        return view('tryouts.show', compact('tryout'));
+    }
 
-  public function edit(Tryout $tryout)
-  {
-      abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    public function edit(Tryout $tryout)
+    {
+        abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-      return view('tryouts.edit', compact('tryout'));
-  }
+        return view('tryouts.edit', compact('tryout'));
+    }
 
-  public function update(UpdateTryoutRequest $request, Tryout $tryout)
-  {
-      $tryout->update($request->validated());
+    public function update(UpdateTryoutRequest $request, Tryout $tryout)
+    {
+        $tryout->update($request->validated());
 
-      return redirect()->route('tryouts.index');
-  }
+        return redirect()->route('tryouts.index');
+    }
 
-  public function destroy(Tryout $tryout)
-  {
-      abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    public function destroy(Tryout $tryout)
+    {
+        abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-      $tryout->delete();
+        $tryout->delete();
 
-      return redirect()->route('tryouts.index');
-  }
+        return redirect()->route('tryouts.index');
+    }
 }

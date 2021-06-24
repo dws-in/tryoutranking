@@ -10,7 +10,7 @@ use App\Models\Score;
 
 class Tryout extends Model
 {
-  
+
   use HasFactory;
 
   protected $table = 'tryouts';
@@ -21,10 +21,15 @@ class Tryout extends Model
     'held',
     'user_id',
   ];
-  
+
   public function user()
   {
     return $this->belongsTo(User::class);
+  }
+
+  public function registerTryout()
+  {
+      return $this->hasMany(RegisterTO::class);
   }
 
   public function score()

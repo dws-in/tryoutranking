@@ -15,20 +15,18 @@ class SupportController extends Controller
 {
 
     public function index(){
-        abort_if(Gate::denies('support_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('support.create');
     }
 
-  public function create()
-  {
-    abort_if(Gate::denies('support_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-    return view('support.create');
-  }
+    public function create()
+    {
+        return view('support.create');
+    }
 
-  public function store(StoreSupportRequest $request)
-  {
-    $support = Support::create($request->validated());
+    public function store(StoreSupportRequest $request)
+    {
+        $support = Support::create($request->validated());
 
-    return redirect()->route('support.create')->with('alert', 'Email sent successfully!');
-  }
+        return redirect()->route('support.create')->with('alert', 'Email sent successfully!');
+    }
 }

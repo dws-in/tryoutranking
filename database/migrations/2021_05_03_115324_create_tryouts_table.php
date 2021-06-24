@@ -18,7 +18,7 @@ class CreateTryoutsTable extends Migration
       $table->char('name', 50);
       $table->text('description');
       $table->dateTime('held');
-      $table->integer('user_id')->unsigned()->index();
+      $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
       $table->timestamps();
     });
   }

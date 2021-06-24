@@ -1,17 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           My Tryout List
+            My TryOut
         </h2>
     </x-slot>
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
-            @can('tryouts_access')
-            <div class="block mb-8">
-                <a href="{{ route('tryouts.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Tryout</a>
-            </div>
-            @endcan
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -40,30 +35,30 @@
                                 @foreach ($tryouts as $tryout)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->id }}
+                                            {{ $tryout->tryout->id }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->name }}
+                                            {{ $tryout->tryout->name }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->description }}
+                                            {{ $tryout->tryout->description }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $tryout->held }}
+                                            {{ $tryout->tryout->held }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.show', $tryout->id) }}" class="">View</a>
+                                                <a href="{{ route('tryouts.show', $tryout->tryout->id) }}" class="">View</a>
                                             </span>
                                             @can('tryouts_access')
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.edit', $tryout->id) }}" class="">Edit</a>
+                                                <a href="{{ route('tryouts.edit', $tryout->tryout->id) }}" class="">Edit</a>
                                             </span>
-                                            <form class="inline-block" action="{{ route('tryouts.destroy', $tryout->id) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
+                                            <form class="inline-block" action="{{ route('tryouts.destroy', $tryout->tryout->id) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800" value="Delete">

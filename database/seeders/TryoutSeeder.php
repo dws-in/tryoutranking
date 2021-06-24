@@ -14,6 +14,6 @@ class TryoutSeeder extends Seeder
      */
     public function run()
     {
-        Tryout::factory()->times(count:10)->create();
+        Tryout::factory()->count(10)->create();
     }
 }
