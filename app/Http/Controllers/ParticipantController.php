@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\RegisterTO;
 use App\Models\Tryout;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
-class MyTryOutController extends Controller
+class ParticipantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +16,7 @@ class MyTryOutController extends Controller
     public function index()
     {
         //
-        $user = Auth::user()->id;
-        $role = Auth::user()->role_id;
-        if ($role == 3){
-            $tryouts = RegisterTO::where('user_id', $user)
-                    ->get();
 
-            return view('myTryout.index-register', ['tryouts' => $tryouts]);
-        }
-        elseif (($role == 1) or ($role == 2)) {
-            $tryouts = Tryout::where('user_id', $user)
-                    ->get();
-
-            return view('myTryout.index-show', ['tryouts' => $tryouts]);
-        }
     }
 
     /**
@@ -64,6 +49,11 @@ class MyTryOutController extends Controller
     public function show($id)
     {
         //
+        $tryout = Tryout::find($id);
+        $tryout = $tryout->id;
+        $participants = RegisterTO::where('tryout_id', $tryout)
+                                    ->get();
+        return view('participant.show')->with('participants', $participants);
     }
 
     /**

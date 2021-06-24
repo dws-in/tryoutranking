@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Gate;
 
 class UpdateUserRequest extends FormRequest
 {
+    public function authorize()
+    {
+        //return Gate::allows('user_access');
+        return true;
+    }
+
     public function rules()
     {
         return [
@@ -28,8 +34,4 @@ class UpdateUserRequest extends FormRequest
         ];
     }
 
-    public function authorize()
-    {
-        return Gate::allows('user_access');
-    }
 }

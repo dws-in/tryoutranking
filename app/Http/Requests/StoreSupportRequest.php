@@ -9,7 +9,7 @@ class StoreSupportRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('support_access');
+        return true;
     }
 
     public function rules()

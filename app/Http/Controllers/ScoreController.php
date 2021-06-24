@@ -4,26 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Score;
 use App\Models\Tryout;
-
 class ScoreController extends Controller
 {
-  public function index(Tryout $tryout)
+  public function index($id)
   {
-    $scores = DB::table('scores')->select('id', 'user_id', 'indonesia', 'english', 'mathematic', 'physic', 'biology', 'chemistry', 'geography', 'economy', 'history', 'sociology')->where('tryout_id', $tryout->id)->get();
-    return view('ranking', compact('scores', 'tryout'));
+      $tryout = Tryout::find($id);
+      $scores = DB::table('scores')
+                //->select('id', 'user_id', 'indonesia', 'english', 'mathematic', 'physic', 'biology', 'chemistry', 'geography', 'economy', 'history', 'sociology')
+                ->where('tryout_id', $tryout->id)
+                ->get();
+
+        return view('scores.index', compact('scores', 'tryout'));
   }
 
-  public function add(Tryout $tryout)
+  public function add($id)
   {
-    return view('score-add', compact('tryout'));
+      $tryout = Tryout::find($id);
+      return view('scores.add', compact('tryout'));
   }
 
-  public function create(Request $request, Tryout $tryout)
+  public function create(Request $request, $id)
   {
     $this->validate($request, [
-      'user_id' => 'required',
       'indonesia' => 'required',
       'english' => 'required',
       'mathematic' => 'required',
@@ -35,8 +40,9 @@ class ScoreController extends Controller
       'history' => 'required',
       'sociology' => 'required'
     ]);
+    $tryout = Tryout::find($id);
     $score = new Score();
-    $score->user_id = $request->user_id;
+    $score->user_id = Auth::user()->id;
     $score->tryout_id = $tryout->id;
     $score->indonesia = $request->indonesia;
     $score->english = $request->english;
@@ -49,13 +55,13 @@ class ScoreController extends Controller
     $score->history = $request->history;
     $score->sociology = $request->sociology;
     $score->save();
-    return redirect('/dashboard');
+    return redirect()->route('scores.index');
   }
 
   public function edit(Tryout $tryout, Score $score)
   {
     if (auth()->user()->id == $tryout->user_id) {
-      return view('score-edit', compact('tryout', 'score'));
+      return view('scores.edit', compact('tryout', 'score'));
     } else {
       return redirect('/dashboard');
     }
@@ -84,5 +90,10 @@ class ScoreController extends Controller
       $score->save();
       return redirect('/dashboard');
     }
+  }
+
+  public function show($id)
+  {
+
   }
 }

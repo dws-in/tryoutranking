@@ -13,13 +13,14 @@ class Score extends Model
   use HasFactory;
 
   protected $table = 'scores';
+
   public function user()
   {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'user_id');
   }
 
   public function tryout()
   {
-    return $this->belongsTo(Tryout::class);
+    return $this->belongsTo(Tryout::class, 'tryout_id');
   }
 }

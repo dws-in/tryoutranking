@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             TryoutSeeder::class,
             ClusterSeeder::class,
             MajorSeeder::class,
+            RegisterTOSeeder::class,
+            ScoreSeeder::class,
         ]);
     }
 }

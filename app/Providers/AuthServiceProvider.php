@@ -31,8 +31,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role_id == 1;
         });
         Gate::define('tryouts_access', function (User $user) {
-            return $user->role_id == 1 or 2;
+            return ($user->role_id == 1) or ($user->role_id == 2);
         });
-
+        Gate::define('register_access', function (User $user) {
+            return ($user->role_id == 3);
+        });
     }
 }

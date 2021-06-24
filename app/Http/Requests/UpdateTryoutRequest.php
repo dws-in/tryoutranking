@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Gate;
 
 class UpdateTryoutRequest extends FormRequest
 {
+    public function authorize()
+    {
+        //return Gate::allows('tryouts_access');
+        return true;
+    }
+
     public function rules()
     {
         return [
@@ -25,8 +31,5 @@ class UpdateTryoutRequest extends FormRequest
         ];
     }
 
-    public function authorize()
-    {
-        return Gate::allows('tryouts_access');
-    }
+
 }
