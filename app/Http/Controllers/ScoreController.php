@@ -31,6 +31,7 @@ class ScoreController extends Controller
   public function show(Score $score)
   {
       // abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+      // pake findorfail
 
       return view('scores.show', compact('score'));
   }
