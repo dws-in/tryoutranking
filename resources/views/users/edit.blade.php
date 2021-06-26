@@ -11,7 +11,7 @@
                 <a href="{{ route('users.index') }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Back to list</a>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('users.update', $user->id) }}">
+                <form method="POST" action="{{ route('users.update', $user->id) }}">
                     @csrf
                     @method('put')
                     <div class="shadow overflow-hidden sm:rounded-md">
@@ -42,15 +42,18 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="roles" class="block font-medium text-sm text-gray-700">Roles</label>
-                            <select name="roles[]" id="roles" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full" multiple="multiple">
-                                @foreach($roles as $id => $role)
+                            <label for="role_id" class="block font-medium text-sm text-gray-700">Roles</label>
+                            <select name="role_id" id="role_id" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full">
+                                {{-- @foreach($roles as $id => $role)
                                     <option value="{{ $id }}"{{ in_array($id, old('roles', $user->roles->pluck('id')->toArray())) ? ' selected' : '' }}>
                                         {{ $role }}
                                     </option>
+                                @endforeach --}}
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id}}">{{ $role->title }}</option>
                                 @endforeach
                             </select>
-                            @error('roles')
+                            @error('role_id')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
