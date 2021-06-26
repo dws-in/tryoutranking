@@ -32,6 +32,7 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
+        //test
         $user = User::create($request->validated());
         $user->roles()->sync($request->input('roles', []));
 
