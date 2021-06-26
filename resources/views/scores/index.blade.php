@@ -6,82 +6,136 @@
     <p style="font-size: small;">How your tryout result?</p>
   </x-slot>
 
-  <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
-        <div class="flex">
-          <div class="flex-auto text-2xl mb-4">{{$tryout->name}}</div>
+  <div>
+        <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
+        <!-- Belum ada tryout id yang diparsing ke score -->
+            <div class="block mb-8 float-left">
+                <a href="{{ route('tryouts.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back</a>
+            </div>
+            <div class="block mb-8 float-right">
+                <a href="{{ route('scores.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add</a>
+            </div>
+            <div class="mt-20 flex flex-col">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-200 w-full">
+                                <thead>
+                                <tr>
+                                    <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        User ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Indonesia
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        English
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Mathematic
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Physic
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Biology
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Chemistry
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Geography
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Economy
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        History
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Sociology
+                                    </th>
+                                    <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($scores as $score)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->id }}
+                                        </td>
 
-          <div class="flex-auto text-right mt-2">
-            <a href="{{ route('scores.add', ['id' => $tryout->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add new Score</a>
-            {{-- a href="{{ route('scores.add', $tryout->id) }}"
-            a href="/tryout/{{$tryout->id}}/score" --}}
-          </div>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->registerTO->user_id }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->indonesia }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->english }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->mathematic }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->physic }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->biology }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->chemistry }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->geography }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->economy }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->history }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->sociology }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                <a href="{{ route('scores.show', $score->id) }}" class="">View</a>
+                                            </span>
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                <a href="{{ route('scores.edit', $score->id) }}" class="">Edit</a>
+                                            </span>
+                                            <form class="inline-block" action="{{ route('scores.destroy', $score->id) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800" value="Delete">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <table class="w-full text-md rounded mb-4">
-          <thead>
-            <tr class="border-b">
-              <th class="text-left p-3 px-5">Math</th>
-              <th class="text-left p-3 px-5">Indo</th>
-              <th class="text-left p-3 px-5">Eng</th>
-              <th class="text-left p-3 px-5">Phy</th>
-              <th class="text-left p-3 px-5">Bio</th>
-              <th class="text-left p-3 px-5">Chem</th>
-              <th class="text-left p-3 px-5">Geo</th>
-              <th class="text-left p-3 px-5">Eco</th>
-              <th class="text-left p-3 px-5">Hist</th>
-              <th class="text-left p-3 px-5">Socio</th>
-              <th class="text-left p-3 px-5">Actions</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($scores as $score)
-            <tr class="border-b hover:bg-orange-100">
-              <td class="p-3 px-5">
-                {{$score->mathematic}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->indonesia}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->english}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->physic}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->biology}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->chemistry}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->geography}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->economy}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->history}}
-              </td>
-              <td class="p-3 px-5">
-                {{$score->sociology}}
-              </td>
-              <td class="p-3 px-5">
-
-                <a href="/tryout/{{$tryout->id}}/score/{{$score->id}}" name="edit" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                <form action="/tryout/{{$tryout->id}}/score/{{$score->id}}" class="inline-block">
-                  <button type="submit" name="delete" formmethod="POST" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
-                  {{ csrf_field() }}
-                </form>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-
-      </div>
     </div>
-  </div>
 </x-app-layout>

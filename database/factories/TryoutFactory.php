@@ -27,6 +27,7 @@ class TryoutFactory extends Factory
             'description' => $this->faker->text(20),
             'held' => $this->faker->dateTime(),
             'user_id' => rand(1,10),
+            'cluster_id' => $this->faker->numberBetween(1, 2),
         ];
     }
 }

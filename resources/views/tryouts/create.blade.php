@@ -11,8 +11,8 @@
                 <a href="{{ route('tryouts.index') }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Back to list</a>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('tryouts.store') }}">
-                    @csrf
+                <form method="POST" action="{{ route('tryouts.store') }}">
+                     {{ csrf_field() }}
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="name" class="block font-medium text-sm text-gray-700">Name</label>
@@ -39,6 +39,18 @@
                             @error('held')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="cluster_id" class="block font-medium text-sm text-gray-700">Cluster</label>
+                            <div class="col-md-6">
+                                <select name="cluster_id" id="cluster" class="form-input rounded-md shadow-sm mt-1 block w-full">
+                                    <option value="">== Select Cluster ==</option>
+                                    @foreach ($clusters as $cluster)
+                                        <option value="{{ $cluster->id}}">{{ $cluster->cluster_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         {{-- <div class="px-4 py-5 bg-white sm:p-6">

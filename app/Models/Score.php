@@ -13,6 +13,19 @@ class Score extends Model
   use HasFactory;
 
   protected $table = 'scores';
+  protected $fillable = [
+    'indonesia',
+    'english',
+    'mathematic',
+    'physic',
+    'biology',
+    'chemistry',
+    'geography',
+    'economy',
+    'history',
+    'sociology',
+    'register_id',
+  ];
 
   public function user()
   {
@@ -23,4 +36,9 @@ class Score extends Model
   {
     return $this->belongsTo(Tryout::class, 'tryout_id');
   }
+
+    public function registerTO()
+    {
+        return $this->belongsTo(RegisterTO::class, 'register_id');
+    }
 }

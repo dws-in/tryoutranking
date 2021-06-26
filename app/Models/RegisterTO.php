@@ -38,5 +38,9 @@ class RegisterTO extends Model
         return $this->hasOne(Cluster::class, 'cluster_id');
     }
 
+    public function scores()
+    {
+        return $this->hasOne(Score::class);
+    }
 
 }

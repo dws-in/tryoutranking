@@ -9,7 +9,8 @@ class StoreTryoutRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('tryouts_access');
+        //return Gate::allows('tryouts_access');
+        return true;
     }
 
     public function rules()
@@ -26,6 +27,9 @@ class StoreTryoutRequest extends FormRequest
             ],
             'user_id' => [
                 'required'|'exists:users,id'
+            ],
+            'cluster_id' => [
+                'required',
             ],
         ];
     }

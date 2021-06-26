@@ -15,6 +15,7 @@ class ScoreSeeder extends Seeder
     public function run()
     {
         //
-        Score::factory()->count(30)->create();
+        Score::factory()->count(20)->create();
+
     }
 }
