@@ -20,11 +20,12 @@ class Tryout extends Model
     'description',
     'held',
     'user_id',
+    'cluster_id',
   ];
 
   public function user()
   {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'user_id');
   }
 
   public function registerTO()
@@ -34,6 +35,11 @@ class Tryout extends Model
 
   public function score()
   {
-    return $this->hasMany(Score::class);
+    return $this->hasOne(Score::class);
+  }
+
+  public function clusters()
+  {
+      return $this->belongsTo(Cluster::class, 'cluster_id');
   }
 }

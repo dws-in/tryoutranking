@@ -9,7 +9,8 @@ class StoreRegisterTORequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('register_access');
+        //return Gate::allows('register_access');
+        return true;
     }
 
     public function rules()

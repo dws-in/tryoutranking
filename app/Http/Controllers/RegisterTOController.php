@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRegisterTORequest;
 use App\Models\Cluster;
 use App\Models\RegisterTO;
+use App\Models\Score;
 use App\Models\Tryout;
 use App\Services\QRCodeServiceInterface;
 use Carbon\Carbon;
@@ -14,22 +15,13 @@ use Illuminate\Support\Facades\DB;
 
 class RegisterTOController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     protected $qrCode;
 
     public function __construct(QRCodeServiceInterface $qrCode)
@@ -61,13 +53,27 @@ class RegisterTOController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         $data['tryout_id'] = $tryout->id;
-        RegisterTO::create($data);
+        $register = RegisterTO::create($data);
 
+        $score = new Score();
+        $score->register_id = $register->id;
+        $score->indonesia = 0;
+        $score->english = 0;
+        $score->mathematic = 0;
+        $score->physic = 0;
+        $score->biology = 0;
+        $score->chemistry = 0;
+        $score->geography = 0;
+        $score->economy = 0;
+        $score->history = 0;
+        $score->sociology = 0;
+        $score->save();
+
+        return redirect()->route('tryouts.index');
         /*
         * use for endroid library
         */
         //return view('register-to.qrcode-lib1', ['qrcode' => $qrcode]);
-        return redirect()->route('tryouts.index');
 
         /*
         * use for simplesoftwareIO library
@@ -76,47 +82,21 @@ class RegisterTOController extends Controller
 
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

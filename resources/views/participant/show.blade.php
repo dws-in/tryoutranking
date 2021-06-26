@@ -15,7 +15,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        ID
+                                        User ID
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Name
@@ -35,7 +35,7 @@
                                 @foreach ($participants as $participant)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $participant->id }}
+                                            {{ $participant->user_id }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -52,7 +52,7 @@
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('scores.index', $participant->tryout_id) }}" class="">Score</a>
+                                                <a href="{{ route('scores.show', $participant->id) }}" class="">Score</a>
                                             </span>
                                         </td>
                                     </tr>

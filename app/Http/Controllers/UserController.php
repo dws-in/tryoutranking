@@ -50,7 +50,6 @@ class UserController extends Controller
         //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $roles = Role::pluck('title', 'id');
-
         $user->load('roles');
 
         return view('users.edit', compact('user', 'roles'));

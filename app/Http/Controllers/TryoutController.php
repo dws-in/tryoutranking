@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTryoutRequest;
 use App\Http\Requests\UpdateTryoutRequest;
+use App\Models\Cluster;
 use Illuminate\Http\Request;
 use App\Models\Tryout;
 use Illuminate\Support\Facades\Gate;
@@ -23,7 +24,9 @@ class TryoutController extends Controller
     public function create()
     {
         //abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('tryouts.create');
+        $clusters = Cluster::all();
+        return view('tryouts.create')
+                ->with('clusters', $clusters);
     }
 
     public function store(StoreTryoutRequest $request)
@@ -39,7 +42,6 @@ class TryoutController extends Controller
     public function show(Tryout $tryout)
     {
     //   abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         return view('tryouts.show', compact('tryout'));
     }
 
