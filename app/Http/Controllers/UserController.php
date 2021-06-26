@@ -48,15 +48,15 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $roles = Role::all();
+        return $roles;
         return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
-        $user->roles()->sync($request->input('roles', []));
+        // $user->roles()->sync($request->input('roles', []));
 
         return redirect()->route('users.index');
     }
