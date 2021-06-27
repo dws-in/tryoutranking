@@ -2,35 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ScoreRepositoryInterface;
 use App\Http\Requests\StoreScoreRequest;
 use App\Models\Score;
 use App\Models\Tryout;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ScoreController extends Controller
 {
+    private $scoreRepository;
 
-    public function index()
+    public function __construct(ScoreRepositoryInterface $scoreRepository)
     {
-        //
-         $scores = Score::all();
-         return view('scores.index', compact('scores'));
+        $this->scoreRepository = $scoreRepository;
+    }
+
+    public function index(Tryout $tryout)
+    {
+        $scores = $this->scoreRepository->findById($tryout->id);
+        return view('scores.index')->with('scores', $scores);
     }
 
     public function create()
     {
-        //
         return view('scores.create');
     }
 
     public function store(Request $request)
     {
-        //
-         Score::create($request->validated());
-         return redirect()->route('scores.index');
+        $this->scoreRepository->create($request->validate());
+        return redirect()->route('scores.index');
     }
 
     public function show($id)

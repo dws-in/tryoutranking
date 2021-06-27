@@ -16,7 +16,6 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'admin@tryout.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
-                'role_id'        => 1,
             ],
             [
                 'id'             => 2,
@@ -24,15 +23,27 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'organizer@tryout.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
-                'role_id'        => 2,
             ],
             [
                 'id'             => 3,
-                'name'           => 'Participant',
-                'email'          => 'participant@tryout.com',
+                'name'           => 'Participant1',
+                'email'          => 'participant1@tryout.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
-                'role_id'        => 3,
+            ],
+            [
+                'id'             => 4,
+                'name'           => 'Participant2',
+                'email'          => 'participant2@tryout.com',
+                'password'       => bcrypt('password'),
+                'remember_token' => null,
+            ],
+            [
+                'id'             => 5,
+                'name'           => 'Participant3',
+                'email'          => 'participant3@tryout.com',
+                'password'       => bcrypt('password'),
+                'remember_token' => null,
             ],
         ];
 

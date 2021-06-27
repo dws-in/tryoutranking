@@ -18,30 +18,34 @@
                     </x-jet-nav-link>
                 </div>
 
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('tryouts.index') }}" :active="request()->routeIs('tryouts.*')">
-                        {{ __('Tryouts') }}
-                        </x-jet-nav-link>
-                    </div>
+                @can('tryouts_access')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('tryouts.index') }}" :active="request()->routeIs('tryouts.*')">
+                    {{ __('Tryouts') }}
+                    </x-jet-nav-link>
+                </div>
+                @endcan
 
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('myTryout.index') }}" :active="request()->routeIs('mytryout.*')">
-                        {{ __('My Tryouts') }}
-                        </x-jet-nav-link>
-                    </div>
+                @can('mytryouts_access')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('mytryouts.index') }}" :active="request()->routeIs('mytryouts.*')">
+                    {{ __('My Tryouts') }}
+                    </x-jet-nav-link>
+                </div>
+                @endcan
 
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('support.create') }}" :active="request()->routeIs('support.*')">
-                        {{ __('Support') }}
-                        </x-jet-nav-link>
-                    </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('support.create') }}" :active="request()->routeIs('support.*')">
+                    {{ __('Support') }}
+                    </x-jet-nav-link>
+                </div>
 
                 @can('users_access')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('user.*')">
-                        {{ __('Users') }}
-                        </x-jet-nav-link>
-                    </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                    {{ __('Users') }}
+                    </x-jet-nav-link>
+                </div>
                 @endcan
 
             </div>

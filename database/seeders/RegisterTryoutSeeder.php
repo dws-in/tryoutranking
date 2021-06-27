@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Score;
+use App\Models\RegisterTryout;
 use Illuminate\Database\Seeder;
 
-class ScoreSeeder extends Seeder
+class RegisterTryoutSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,6 @@ class ScoreSeeder extends Seeder
     public function run()
     {
         //
-        Score::factory()->count(20)->create();
-
+        RegisterTryout::factory()->count(20)->create();
     }
 }

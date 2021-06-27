@@ -23,11 +23,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('tryouts', TryoutController::class);
+    Route::resource('mytryouts', MyTryoutsController::class);
     Route::resource('support', SupportController::class);
+    Route::resource('scores', ScoreController::class);
     Route::resource('users', UserController::class);
     Route::resource('rekomendasi', RekomendasiController::class);
-    Route::resource('myTryout', MyTryOutController::class);
-    Route::resource('scores', ScoreController::class);
     Route::resource('participant', ParticipantController::class);
 
     Route::prefix('register-to')->name('register-to.')->group(function () {

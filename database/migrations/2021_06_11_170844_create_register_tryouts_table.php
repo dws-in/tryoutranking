@@ -8,7 +8,7 @@ class CreateRegisterTryoutsTable extends Migration
 {
     public function up()
     {
-        Schema::create('register_tryouts', function (Blueprint $table) {
+        Schema::create('register_tryout', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('tryout_id')->references('id')->on('tryouts')->cascadeOnDelete();
@@ -16,7 +16,6 @@ class CreateRegisterTryoutsTable extends Migration
             $table->string("school_name");
             $table->date("graduation_date");
             $table->string("phone_number");
-            $table->foreignId('cluster_id')->references('id')->on('clusters')->cascadeOnDelete();
             $table->timestamps();
         });
 

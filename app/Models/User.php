@@ -28,7 +28,6 @@ class User extends Authenticatable
     'name',
     'email',
     'password',
-    'role_id'
   ];
 
   protected $hidden = [
@@ -46,19 +45,19 @@ class User extends Authenticatable
     'profile_photo_url',
   ];
 
-//   public function __construct(array $attributes = [])
-//   {
-//     parent::__construct($attributes);
-//     self::created(function(User $user) {
-//       if (!$user->roles()->get()->contains(3)) {
-//         $user->roles()->attach(3);
-//       }
-//     });
-//   }
+  public function __construct(array $attributes = [])
+  {
+    parent::__construct($attributes);
+    self::created(function(User $user) {
+      if (!$user->roles()->get()->contains(3)) {
+        $user->roles()->attach(3);
+      }
+    });
+  }
 
   public function roles()
   {
-    return $this->belongsTo(Role::class, 'role_id');
+      return $this->belongsToMany(Role::class);
   }
 
   public function tryout()

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\RegisterTO;
+use App\Models\RegisterTryout;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RegisterTOFactory extends Factory
+class RegisterTryoutFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = RegisterTO::class;
+    protected $model = RegisterTryout::class;
 
     /**
      * Define the model's default state.

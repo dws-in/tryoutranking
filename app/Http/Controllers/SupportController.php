@@ -14,10 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 class SupportController extends Controller
 {
 
-    public function index(){
-        return view('support.create');
-    }
-
     public function create()
     {
         return view('support.create');

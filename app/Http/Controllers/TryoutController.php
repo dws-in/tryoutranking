@@ -5,25 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTryoutRequest;
 use App\Http\Requests\UpdateTryoutRequest;
 use App\Models\Cluster;
-use Illuminate\Http\Request;
 use App\Models\Tryout;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
 
 class TryoutController extends Controller
 {
     public function index()
     {
-    //  abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $user = Auth::user()->id;
+        abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        
         $tryouts = Tryout::all();
         return view('tryouts.index', compact('tryouts'));
     }
 
     public function create()
     {
-        //abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $clusters = Cluster::all();
         return view('tryouts.create')
                 ->with('clusters', $clusters);
@@ -31,17 +30,15 @@ class TryoutController extends Controller
 
     public function store(StoreTryoutRequest $request)
     {
-        $user = Auth::user()->id;
-        $data = $request->validated();
-        $data['user_id'] = $user;
-        Tryout::create($data);
+        Tryout::create($request->validated());
 
         return redirect()->route('tryouts.index');
     }
 
     public function show(Tryout $tryout)
     {
-    //   abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return view('tryouts.show', compact('tryout'));
     }
 
