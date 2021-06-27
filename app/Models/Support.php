@@ -10,7 +10,7 @@ class Support extends Model
   use HasFactory;
 
   protected $table = 'supports';
-
+  protected $primaryKey = 'id';
   protected $fillable = [
     'name',
     'email',

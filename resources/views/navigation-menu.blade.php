@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <span class="navbar-text font-bold">TryOutRanking</span>
+                        <span class="navbar-text font-bold">TryoutRanking</span>
                         {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
                     </a>
                 </div>
@@ -25,6 +25,12 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('myTryout.index') }}" :active="request()->routeIs('mytryout.*')">
+                        {{ __('My Tryouts') }}
+                        </x-jet-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('support.create') }}" :active="request()->routeIs('support.*')">
                         {{ __('Support') }}
                         </x-jet-nav-link>
@@ -37,13 +43,6 @@
                         </x-jet-nav-link>
                     </div>
                 @endcan
-
-           
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('myTryout.index') }}" :active="request()->routeIs('mytryout.*')">
-                        {{ __('my Tryout') }}
-                        </x-jet-nav-link>
-                    </div>
 
             </div>
 

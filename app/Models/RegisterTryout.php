@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Tryout;
 
-class RegisterTO extends Model
+class RegisterTryout extends Model
 {
     use HasFactory;
 
     protected $table = 'register_tryouts';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
         'tryout_id',

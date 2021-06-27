@@ -2,7 +2,7 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{-- <x-jet-authentication-card-logo /> --}}
-               <span class="navbar-text font-bold text-3xl">TryOutRanking</span>
+               <span class="navbar-text font-bold text-3xl">TryoutRanking</span>
                  {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
         </x-slot>
 
