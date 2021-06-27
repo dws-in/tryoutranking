@@ -25,7 +25,7 @@ class UserController extends Controller
         //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         //$users = User::with('roles')->get();
-        $users = $this->userRepository->getAll();
+        $users = $this->userRepository->all();
         return view('users.index')->with('users', $users);
     }
 

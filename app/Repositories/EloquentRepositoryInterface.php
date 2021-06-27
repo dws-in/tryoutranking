@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 interface EloquentRepositoryInterface
 {
-    public function getAll(array $columns = ['*'], array $relations = []): Collection;
+    public function all(array $columns = ['*'], array $relations = []): Collection;
 
     public function allTrashed(): Collection;
 

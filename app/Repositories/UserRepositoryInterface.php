@@ -5,7 +5,6 @@ namespace App\Repositories;
 use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\EloquentRepositoryInterface;
 
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends EloquentRepositoryInterface
 {
-    public function getAll(array $columns = ['*'], array $relations = []): Collection;
 }

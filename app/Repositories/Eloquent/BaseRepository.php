@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace App\Repositories\Eloquent;
 
@@ -15,7 +15,7 @@ class BaseRepository implements EloquentRepositoryInterface
         $this->model = $model;
     }
 
-    public function getAll(array $columns = ['*'], array $relations = []): Collection
+    public function all(array $columns = ['*'], array $relations = []): Collection
     {
         return $this->model->with($relations)->get($columns);
     }
