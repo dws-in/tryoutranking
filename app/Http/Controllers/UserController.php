@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UserRepositoryInterface;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
@@ -12,12 +13,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    private $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function index()
     {
         //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         //$users = User::with('roles')->get();
-        $users = User::all();
+        $users = $this->userRepository->getAll();
         return view('users.index')->with('users', $users);
     }
 
