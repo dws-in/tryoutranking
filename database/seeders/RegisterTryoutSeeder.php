@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\RegisterTO;
+use App\Models\RegisterTryout;
 use Illuminate\Database\Seeder;
 
-class RegisterTOSeeder extends Seeder
+class RegisterTryoutSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class RegisterTOSeeder extends Seeder
     public function run()
     {
         //
-        RegisterTO::factory()->count(20)->create();
+        RegisterTryout::factory()->count(20)->create();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RegisterTryout;
 use App\Models\Tryout;
 use Illuminate\Database\Seeder;
 
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
             ClusterSeeder::class,
             TryoutSeeder::class,
             MajorSeeder::class,
-            RegisterTOSeeder::class,
+            RegisterTryoutSeeder::class,
             ScoreSeeder::class,
         ]);
     }
