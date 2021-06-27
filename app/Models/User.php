@@ -22,8 +22,8 @@ class User extends Authenticatable
   use Notifiable;
   use TwoFactorAuthenticatable;
 
+  protected $table = 'users';
   protected $primaryKey = 'id';
-
   protected $fillable = [
     'name',
     'email',

@@ -13,6 +13,8 @@ class Score extends Model
   use HasFactory;
 
   protected $table = 'scores';
+  protected $primaryKey = 'id';
+
   protected $fillable = [
     'indonesia',
     'english',

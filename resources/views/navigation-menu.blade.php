@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <span class="navbar-text font-bold">TryOutRanking</span>
+                        <span class="navbar-text font-bold">TryoutRanking</span>
                         {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
                     </a>
                 </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRegisterTORequest;
 use App\Models\Cluster;
-use App\Models\RegisterTO;
+use App\Models\RegisterTryout;
 use App\Models\Score;
 use App\Models\Tryout;
 use App\Services\QRCodeServiceInterface;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class RegisterTOController extends Controller
+class RegisterTryoutController extends Controller
 {
 
     public function index()
@@ -53,7 +53,7 @@ class RegisterTOController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         $data['tryout_id'] = $tryout->id;
-        $register = RegisterTO::create($data);
+        $register = RegisterTryout::create($data);
 
         $score = new Score();
         $score->register_id = $register->id;
