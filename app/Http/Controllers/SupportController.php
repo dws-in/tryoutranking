@@ -20,6 +20,8 @@ class SupportController extends Controller
 
     public function create()
     {
+
+
         return view('support.create');
     }
 
@@ -27,6 +29,10 @@ class SupportController extends Controller
     {
         $support = Support::create($request->validated());
 
+        Mail::to($request->input('email'))->send(new SupportMail($request->input('id'), $request->input('email'), $request->input('description')));
+
         return redirect()->route('support.create')->with('alert', 'Email sent successfully!');
     }
+    // Mail::to('adm.tryout.tor@gmail.com')->send(new SupportMail($request->input('id'), $request->input('email'), $request->input('description'));
+
 }
