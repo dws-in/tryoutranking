@@ -13,18 +13,17 @@ class ScoreFactory extends Factory
      * @var string
      */
     protected $model = Score::class;
-
     /**
      * Define the model's default state.
      *
      * @return array
      */
+
     public function definition()
     {
+        static $number = 1;
         return [
             //
-            'tryout_id' => rand(1,10),
-            'user_id' => rand(1,10),
             'indonesia' => 75,
             'english' => 75,
             'mathematic' => 75,
@@ -34,7 +33,8 @@ class ScoreFactory extends Factory
             'geography' => 75,
             'economy' => 75,
             'history' => 75,
-            'sociology' => 75
+            'sociology' => 75,
+            'register_id' => $number++,
         ];
     }
 }

@@ -15,6 +15,6 @@ class RegisterTOSeeder extends Seeder
     public function run()
     {
         //
-        RegisterTO::factory()->count(8)->create();
+        RegisterTO::factory()->count(20)->create();
     }
 }

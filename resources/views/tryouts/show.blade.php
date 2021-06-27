@@ -58,11 +58,11 @@
                             </table>
                         </div>
 
-                        @can('register_access')
+                       
                         <div class="form-group pt-3 float-left">
                              <a href="{{ route('register-to.create', ['id' => $tryout->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounde">Daftar</a>
                         </div>
-                        @endcan
+
                         <div class="form-group pt-3 float-right">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Score</button>
                         </div>

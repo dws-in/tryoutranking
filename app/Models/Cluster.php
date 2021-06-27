@@ -22,4 +22,9 @@ class Cluster extends Model
     {
         return $this->hasOne(RegisterTO::class);
     }
+
+    public function tryouts()
+    {
+        return $this->hasMany(Tryout::class);
+    }
 }

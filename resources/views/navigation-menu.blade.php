@@ -25,6 +25,12 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('myTryout.index') }}" :active="request()->routeIs('mytryout.*')">
+                        {{ __('My Tryout') }}
+                        </x-jet-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('support.create') }}" :active="request()->routeIs('support.*')">
                         {{ __('Support') }}
                         </x-jet-nav-link>
@@ -38,13 +44,6 @@
                     </div>
                 @endcan
 
-                @can('register_access')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('myTryout.index') }}" :active="request()->routeIs('mytryout.*')">
-                        {{ __('my Tryout') }}
-                        </x-jet-nav-link>
-                    </div>
-                @endcan
             </div>
 
             <!-- Settings Dropdown -->

@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', UserController::class);
     Route::resource('rekomendasi', RekomendasiController::class);
     Route::resource('myTryout', MyTryOutController::class);
-    //Route::resource('scores', ScoreController::class);
+    Route::resource('scores', ScoreController::class);
     Route::resource('participant', ParticipantController::class);
 
     Route::prefix('register-to')->name('register-to.')->group(function () {
@@ -35,12 +35,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/store/{id}', [RegisterTOController::class, 'store'])->name('store');
     });
 
-    Route::prefix('scores')->name('scores.')->group(function () {
-        Route::get('/{id}', [ScoreController::class, 'index'])->name('index');
-        Route::get('/add/{id}', [ScoreController::class, 'add'])->name('add');
-        Route::post('/creat/{id}', [ScoreController::class, 'create'])->name('create');
-    });
+    // Route::prefix('scores')->name('scores.')->group(function () {
+    //     Route::get('/show/{id}', [ScoreController::class, 'show'])->name('show');
+    //     Route::post('/store/{id}', [ScoreController::class, 'store'])->name('store');
+    // });
 });
-
-//Route::get('/register-to/{$id}', [RegisterTOController::class, 'store'])->name('anjay');
 
