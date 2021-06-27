@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\TryoutAPIController;
 use App\Http\Controllers\TryoutController;
 use Illuminate\Http\Request;
@@ -22,4 +23,7 @@ Route::post('login', [RegisterController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResource('tryouts', TryoutAPIController::class);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('tryouts', TryoutAPIController::class);
+});

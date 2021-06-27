@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Cluster;
 use App\Models\Tryout;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -15,18 +16,41 @@ class TryoutRepository
 
     public function  index()
     {
-        return $this->tryout::paginate(10);
+        return Tryout::all();
+    }
+
+    public function create()
+    {
+        return Cluster::all();
     }
 
     public function store($request)
     {
+        $user = Auth::user()->id;
         $data = $request->validated();
-        $data['user_id'] = 1;
-        $this->tryout::create($data);
+        $data['user_id'] = $user;
+        Tryout::create($data);
     }
 
-    public function update($request, $tryout)
+    public function show($id)
     {
+        $tryout = Tryout::findOrFail($id);
+        return $tryout;
+    }
+
+    public function edit($id)
+    {
+        return Tryout::findOrFail($id);
+    }
+
+    public function update($request, $id)
+    {
+        $tryout = Tryout::findOrFail($id);
         $tryout->update($request->validated());
+    }
+
+    public function delete()
+    {
+
     }
 }

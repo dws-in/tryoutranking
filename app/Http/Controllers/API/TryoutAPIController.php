@@ -32,9 +32,11 @@ class TryoutAPIController extends BaseController
     public function create()
     {
         //
-        $clusters = Cluster::all();
-        return view('tryouts.create')
-                ->with('clusters', $clusters);
+        $clusters =$this->tryout->create();
+         return $this->sendResponse(
+            $clusters,
+            'success'
+        );
     }
 
     public function store(StoreTryoutRequest $request)
@@ -50,25 +52,41 @@ class TryoutAPIController extends BaseController
     public function show($id)
     {
         //
+        $tryout = $this->tryout->show($id);
+        return $this->sendResponse(
+            $tryout,
+            'success'
+        );
     }
 
     public function edit($id)
     {
         //
+        $tryout = $this->tryout->edit($id);
+        $clusters = Cluster::all();
+        return $this->sendResponse(
+            $tryout,
+            'success'
+        );
     }
 
-    public function update(Request $request, Tryout $tryout)
+    public function update(Request $request, $id)
     {
         //
-        $data = $this->tryout->update($request, $tryout);
+        $data = $this->tryout->update($request, $id);
         return $this->sendResponse(
             $data,
             'success'
         );
     }
 
-    public function destroy($id)
+    public function destroy(Tryout $tryout)
     {
         //
+        $tryout->delete();
+        return $this->sendResponse(
+            $tryout,
+            'success'
+        );
     }
 }

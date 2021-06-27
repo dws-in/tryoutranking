@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RegisterTO;
+use App\Models\RegisterTryout;
 use App\Models\Tryout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +21,7 @@ class MyTryOutController extends Controller
         $user = Auth::user()->id;
         $role = Auth::user()->role_id;
         if ($role == 3){
-            $tryouts = RegisterTO::where('user_id', $user)
+            $tryouts = RegisterTryout::where('user_id', $user)
                     ->get();
 
             return view('myTryout.index-register', ['tryouts' => $tryouts]);

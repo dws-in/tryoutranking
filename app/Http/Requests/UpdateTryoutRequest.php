@@ -25,8 +25,8 @@ class UpdateTryoutRequest extends FormRequest
             'held' => [
                 'required', 'string',
             ],
-            'user_id' => [
-                'required', 'string',
+            'cluster_id' => [
+                'required','exists:clusters,id'
             ],
         ];
     }
