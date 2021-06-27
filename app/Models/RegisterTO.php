@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Tryout;
 
-class RegisterTryout extends Model
+class RegisterTO extends Model
 {
     use HasFactory;
 

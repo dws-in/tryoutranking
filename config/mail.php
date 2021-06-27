@@ -86,7 +86,7 @@ return [
     */
 
   'from' => [
-    'address' => 'eastnest.official@gmail.com',
+    'address' => 'adm.tryout.tor@gmail.com',
     'name' => 'TryoutRanking',
   ],
 
