@@ -29,7 +29,7 @@ class TryoutRepository
         $user = Auth::user()->id;
         $data = $request->validated();
         $data['user_id'] = $user;
-        Tryout::create($data);
+        $this->tryout->create($data);
     }
 
     public function show($id)

@@ -25,9 +25,9 @@ class StoreTryoutRequest extends FormRequest
             'held' => [
                 'required', 'string',
             ],
-            'user_id' => [
-                'required'|'exists:users,id'
-            ],
+            // 'user_id' => [
+            //     'required','exists:users,id'
+            // ],
             'cluster_id' => [
                 'required',
             ],

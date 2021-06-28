@@ -19,6 +19,7 @@ class Tryout extends Model
     'name',
     'description',
     'held',
+    'user_id',
     'cluster_id',
   ];
 

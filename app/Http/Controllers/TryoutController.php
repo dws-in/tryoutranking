@@ -22,7 +22,7 @@ class TryoutController extends Controller
 
     public function index()
     {
-    //  abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         // $user = Auth::user()->id;
         // $tryouts = Tryout::all();
@@ -34,18 +34,19 @@ class TryoutController extends Controller
     {
         //abort_if(Gate::denies('tryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         //$clusters = Cluster::all();
-        $clusters =$this->tryout->create();
+        $clusters = $this->tryout->create();
         return view('tryouts.create')
                 ->with('clusters', $clusters);
     }
 
     public function store(StoreTryoutRequest $request)
     {
-        // $user = Auth::user()->id;
-        // $data = $request->validated();
-        // $data['user_id'] = $user;
-        // Tryout::create($data);
-        $this->tryout->store($request);
+
+        $user = Auth::user()->id;
+        $data = $request->validated();
+        $data['user_id'] = $user;
+        Tryout::create($data);
+        //$this->tryout->store($request);
         return redirect()->route('tryouts.index');
     }
 

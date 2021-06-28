@@ -44,7 +44,7 @@
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="cluster_id" class="block font-medium text-sm text-gray-700">Cluster</label>
                             <div class="col-md-6">
-                                <select name="cluster_id" id="cluster" class="form-input rounded-md shadow-sm mt-1 block w-full">
+                                <select name="cluster_id" id="cluster_id" class="form-input rounded-md shadow-sm mt-1 block w-full">
                                     <option value="">== Select Cluster ==</option>
                                     @foreach ($clusters as $cluster)
                                         <option value="{{ $cluster->id}}">{{ $cluster->cluster_name }}</option>
