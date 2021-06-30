@@ -66,8 +66,8 @@
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 <a href="{{ route('participant.show', $tryout->id) }}" class="">Participant</a>
                                             </span>
-                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                <a href="{{ route('scores.index', $tryout) }}" class="">Ranking</a>
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                <a href="{{ route('scores.index', $tryout->id) }}" class="">Ranking</a>
                                             </span>
                                             <form class="inline-block" action="{{ route('tryouts.destroy', $tryout->id) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
                                                 <input type="hidden" name="_method" value="DELETE">

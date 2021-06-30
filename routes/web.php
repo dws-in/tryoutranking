@@ -34,10 +34,5 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/create/{id}', [RegisterTOController::class, 'create'])->name('create');
         Route::post('/store/{id}', [RegisterTOController::class, 'store'])->name('store');
     });
-
-    // Route::prefix('scores')->name('scores.')->group(function () {
-    //     Route::get('/show/{id}', [ScoreController::class, 'show'])->name('show');
-    //     Route::post('/store/{id}', [ScoreController::class, 'store'])->name('store');
-    // });
 });
 

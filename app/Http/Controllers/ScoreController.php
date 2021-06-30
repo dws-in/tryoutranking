@@ -21,7 +21,7 @@ class ScoreController extends Controller
 
     public function index(Tryout $tryout)
     {
-        $scores = $this->scoreRepository->findById($tryout->id);
+        $scores = $this->scoreRepository->all();
         return view('scores.index')->with('scores', $scores);
     }
 
