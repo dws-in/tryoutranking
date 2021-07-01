@@ -28,9 +28,9 @@ class Tryout extends Model
     return $this->belongsTo(User::class, 'user_id');
   }
 
-  public function registerTO()
+  public function registerTryout()
   {
-      return $this->hasMany(RegisterTO::class);
+      return $this->hasMany(RegisterTryout::class);
   }
 
   public function score()

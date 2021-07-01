@@ -20,7 +20,7 @@ class Cluster extends Model
 
     public function registerTo()
     {
-        return $this->hasOne(RegisterTO::class);
+        return $this->hasOne(RegisterTryout::class);
     }
 
     public function tryouts()
