@@ -12,11 +12,26 @@ class MyTryoutController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('mytryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+      
+//         abort_if(Gate::denies('mytryouts_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
-        $mytryouts = RegisterTryout::all();
-        return view('mytryouts.index', compact('mytryouts'));
-        
+//         $mytryouts = RegisterTryout::all();
+//         return view('mytryouts.index', compact('mytryouts'));
+                //
+        $user = Auth::user()->id;
+        $role = Auth::user()->role_id;
+        if ($role == 3){
+            $tryouts = RegisterTryout::where('user_id', $user)
+                    ->get();
+
+            return view('myTryout.index-register', ['tryouts' => $tryouts]);
+        }
+        elseif (($role == 1) or ($role == 2)) {
+            $tryouts = Tryout::where('user_id', $user)
+                    ->get();
+
+            return view('myTryout.index-show', ['tryouts' => $tryouts]);
+        }
     }
 
     public function create()

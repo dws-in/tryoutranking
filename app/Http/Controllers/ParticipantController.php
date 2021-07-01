@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RegisterTO;
+use App\Models\RegisterTryout;
 use App\Models\Tryout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +53,7 @@ class ParticipantController extends Controller
         $tryout = Tryout::find($id);
         $user = Auth::user()->id;
         $tryout = $tryout->id;
-        $participants = RegisterTO::where('tryout_id', $tryout)
+        $participants = RegisterTryout::where('tryout_id', $tryout)
                                     ->get();
         return view('participant.show')
                 ->with('participants', $participants)

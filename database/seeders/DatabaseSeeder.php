@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RegisterTryout;
 use App\Models\Tryout;
 use Illuminate\Database\Seeder;
 
@@ -19,12 +20,16 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             PermissionRoleTableSeeder::class,
             UsersTableSeeder::class,
-            RoleUserTableSeeder::class,
+
+            UserSeeder::class,
+            ClusterSeeder::class,
+            TryoutSeeder::class,
+            MajorSeeder::class,
+            RegisterTryoutSeeder::class,
+            ScoreSeeder::class,
+             RoleUserTableSeeder::class,
             TryoutsTableSeeder::class,
             ScoresTableSeeder::class,
-            // ClusterSeeder::class,
-            // MajorSeeder::class,
-            // RegisterTryoutSeeder::class,
         ]);
     }
 }

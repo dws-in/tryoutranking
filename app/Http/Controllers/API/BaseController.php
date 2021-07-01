@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\API;
 
 
@@ -12,7 +11,7 @@ class BaseController extends Controller
 {
     public function sendResponse($result, $message)
     {
-    	$response = [
+       $response = [
             'success' => true,
             'data'    => $result,
             'message' => $message,
@@ -20,6 +19,7 @@ class BaseController extends Controller
 
         return response()->json($response, 200);
     }
+
 
     public function sendError($error, $errorMessages = [], $code = 404)
     {
