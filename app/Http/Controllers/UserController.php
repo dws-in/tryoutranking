@@ -22,16 +22,15 @@ class UserController extends Controller
 
     public function index()
     {
-        //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        //$users = User::with('roles')->get();
         $users = $this->userRepository->all();
         return view('users.index')->with('users', $users);
     }
 
     public function create()
     {
-        //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $roles = Role::pluck('title', 'id');
 
@@ -40,7 +39,6 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        //test
         $user = User::create($request->validated());
         $user->roles()->sync($request->input('roles', []));
 
@@ -49,14 +47,15 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('users.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $roles = Role::all();
         return view('users.edit', compact('user', 'roles'));
     }
@@ -64,14 +63,14 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
-        // $user->roles()->sync($request->input('roles', []));
+        $user->roles()->sync($request->input('roles', []));
 
         return redirect()->route('users.index');
     }
 
     public function destroy(User $user)
     {
-        //abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $user->delete();
 

@@ -11,12 +11,7 @@ interface EloquentRepositoryInterface
 
     public function allTrashed(): Collection;
 
-    public function findById(
-        int $modelId,
-        array $columns = ['*'],
-        array $relations = [],
-        array $appends = []
-    ): ?Model;
+    public function findById(int $modelId, array $columns = ['*'], array $relations = [], array $appends = []): ?Model;
 
     public function findTrashedById(int $modelId): ?Model;
 

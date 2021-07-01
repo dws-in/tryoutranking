@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTryoutRequest;
 use App\Http\Requests\UpdateTryoutRequest;
 use App\Models\Cluster;
-use Illuminate\Http\Request;
 use App\Models\Tryout;
 use App\Repositories\TryoutRepository;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
 
 class TryoutController extends Controller
 {
@@ -41,8 +39,7 @@ class TryoutController extends Controller
 
     public function store(StoreTryoutRequest $request)
     {
-
-        $user = Auth::user()->id;
+      $user = Auth::user()->id;
         $data = $request->validated();
         $data['user_id'] = $user;
         Tryout::create($data);

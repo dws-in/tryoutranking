@@ -41,6 +41,6 @@ class Score extends Model
 
     public function registerTO()
     {
-        return $this->belongsTo(RegisterTO::class, 'register_id');
+        return $this->belongsTo(RegisterTryout::class, 'register_id');
     }
 }
