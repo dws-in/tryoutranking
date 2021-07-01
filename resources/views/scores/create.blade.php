@@ -9,13 +9,13 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
 
-        <form method="POST" action="/tryout/{{$tryout->id}}/score">
+        <form method="POST" action="{{ route('scores.store') }}">
 
           <div class="form-group">
-            <span class="font-medium">User ID</span>
+            <span class="font-medium">Register ID</span>
             <input name="user_id" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" placeholder='Example: 215'></input>
-            @if ($errors->has('user_id'))
-            <span class="text-danger">{{ $errors->first('user_id') }}</span>
+            @if ($errors->has('register_id'))
+            <span class="text-danger">{{ $errors->first('registers_id') }}</span>
             @endif
           </div>
           <div class="form-group pt-3">

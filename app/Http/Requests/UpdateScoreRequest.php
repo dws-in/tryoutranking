@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreScoreRequest extends FormRequest
+class UpdateScoreRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,9 +14,6 @@ class StoreScoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'register_id' => [
-                'required','numeric'
-            ],
             'indonesia' => [
                 'required','numeric'
             ],

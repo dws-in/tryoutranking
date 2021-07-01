@@ -2,110 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreScoreRequest;
 use App\Models\Score;
-use App\Models\Tryout;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\ScoreRepository;
+use App\Http\Requests\StoreScoreRequest;
+use App\Http\Requests\UpdateScoreRequest;
 
 class ScoreController extends Controller
 {
+    private $scoreRepository;
+
+    public function __construct(ScoreRepository $scoreRepository)
+    {
+        $this->scoreRepository = $scoreRepository;
+    }
 
     public function index()
     {
-        //
-         $scores = Score::all();
-         return view('scores.index', compact('scores'));
-    }
+        $scores = $this->scoreRepository->index();
 
-    public function create()
-    {
-        //
-        return view('scores.create');
-    }
-
-    public function store(Request $request)
-    {
-        //
-         Score::create($request->validated());
-         return redirect()->route('scores.index');
+        return view('scores.index')->with('scores', $scores);
     }
 
     public function show($id)
     {
-        //
-        $score = Score::where('register_id', $id)
-                        ->first();
+        $score = $this->scoreRepository->read($id);
 
-        return view('scores.show')
-                ->with('score', $score);
+        return view('scores.show', compact('score'));
+    }
+
+    public function create()
+    {
+        return view('scores.create');
+    }
+
+    public function store(StoreScoreRequest $request)
+    {
+        $this->scoreRepository->create($request->validated());
+
+        return redirect()->route('scores.index');
     }
 
     public function edit($id)
     {
-        //
-        $score = Score::find($id);
+        $score = $this->scoreRepository->read($id);
         return view('scores.edit', compact('score'));
     }
 
-    public function update(StoreScoreRequest $request, $id)
+    public function update(UpdateScoreRequest $request, Score $score)
     {
-        //
-        $score = Score::findOrFail($id);
-        $input = $request->validated();
-        $score->update($input);
-        $score->save();
-        return redirect()->route('scores.index');
-            // $score->indonesia = $request->indonesia;
-            // $score->english = $request->english;
-            // $score->mathematic = $request->mathematic;
-            // $score->physic = $request->physic;
-            // $score->biology = $request->biology;
-            // $score->chemistry = $request->chemistry;
-            // $score->geography = $request->geography;
-            // $score->economy = $request->economy;
-            // $score->history = $request->history;
-            // $score->sociology = $request->sociology;
-            // $score->save();
-            //return redirect('/dashboard');
-        // $this->validate($request, [
-        //     'indonesia' => 'required',
-        //     'english' => 'required',
-        //     'mathematic' => 'required',
-        //     'physic' => 'required',
-        //     'biology' => 'required',
-        //     'chemistry' => 'required',
-        //     'geography' => 'required',
-        //     'economy' => 'required',
-        //     'history' => 'required',
-        //     'sociology' => 'required'
-        // ]);
-        // $score = Score::where('id', $id);
-        // $score = new Score();
-        // $score->indonesia = $request->indonesia;
-        // $score->english = $request->english;
-        // $score->mathematic = $request->mathematic;
-        // $score->physic = $request->physic;
-        // $score->biology = $request->biology;
-        // $score->chemistry = $request->chemistry;
-        // $score->geography = $request->geography;
-        // $score->economy = $request->economy;
-        // $score->history = $request->history;
-        // $score->sociology = $request->sociology;
-        // $score->save();
+        $this->scoreRepository->update($request->validated(), $score->id);
 
+        return redirect()->route('scores.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $this->scoreRepository->delete($id);
+
+        return redirect()->route('scores.index');
     }
 }

@@ -4,9 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use App\Models\User;
-use App\Models\Tryout;
+use App\Models\RegisterTryout;
 
 class Score extends Model
 {
@@ -16,6 +14,7 @@ class Score extends Model
   protected $primaryKey = 'id';
 
   protected $fillable = [
+    'register_id',
     'indonesia',
     'english',
     'mathematic',
@@ -26,21 +25,10 @@ class Score extends Model
     'economy',
     'history',
     'sociology',
-    'register_id',
   ];
 
-  public function user()
+  public function registerTryout()
   {
-    return $this->belongsTo(User::class, 'user_id');
+    return $this->belongsTo(RegisterTryout::class, 'register_id');
   }
-
-  public function tryout()
-  {
-    return $this->belongsTo(Tryout::class, 'tryout_id');
-  }
-
-    public function registerTO()
-    {
-        return $this->belongsTo(RegisterTO::class, 'register_id');
-    }
 }
