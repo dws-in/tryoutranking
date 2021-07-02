@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembahasan;
 use App\Models\RegisterTryout;
 use App\Models\Tryout;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class MyTryOutController extends Controller
             $tryouts = RegisterTryout::where('user_id', $user)
                     ->get();
 
-            return view('myTryout.index-register', ['tryouts' => $tryouts]);
+            $file = Pembahasan::all();
+            return view('myTryout.index-register', compact('tryouts', 'file'));
         }
         elseif (($role == 1) or ($role == 2)) {
             $tryouts = Tryout::where('user_id', $user)
@@ -53,6 +55,18 @@ class MyTryOutController extends Controller
     public function store(Request $request)
     {
         //
+        $data = new Pembahasan();
+        $file = $request->file;
+        $filename = $file->getClientOriginalName();
+
+        $request->file->move('assets', $filename);
+        $data->file = $filename;
+
+        $data->tryout_id = $request->tryout_id;
+        $data->title = $request->title;
+        $data->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -64,6 +78,8 @@ class MyTryOutController extends Controller
     public function show($id)
     {
         //
+        $tryout = Tryout::find($id);
+        return view('myTryout.upload', compact('tryout'));
     }
 
     /**
@@ -98,5 +114,12 @@ class MyTryOutController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function download(Request $request, $id)
+    {
+        $file = Pembahasan::where('tryout_id', $id)
+                            ->first();
+        return response()->download(public_path('assets/'.$file->file));
     }
 }

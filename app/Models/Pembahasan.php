@@ -10,9 +10,10 @@ class Pembahasan extends Model
     use HasFactory;
 
     protected $table = 'pembahasans';
-     protected $fillable = [
-        'file',
-    ];
+    // protected $fillable = [
+    //     'title',
+    //     'file',
+    // ];
 
     public function tryout()
     {

@@ -39,5 +39,8 @@ Route::group(['middleware' => 'auth'], function() {
     //     Route::get('/show/{id}', [ScoreController::class, 'show'])->name('show');
     //     Route::post('/store/{id}', [ScoreController::class, 'store'])->name('store');
     // });
+    Route::prefix('myTryout')->name('myTryout.')->group(function () {
+         Route::get('/download/{id}', [MyTryOutController::class, 'download'])->name('download');
+    });
 });
 

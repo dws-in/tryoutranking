@@ -16,6 +16,7 @@ class CreatePembahasansTable extends Migration
         Schema::create('pembahasans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tryout_id')->references('id')->on('tryouts')->cascadeOnDelete();
+            $table->char('title');
             $table->string('file');
             $table->timestamps();
         });

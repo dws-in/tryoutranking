@@ -22,6 +22,15 @@
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="organizer_name" class="block font-medium text-sm text-gray-700">Organizer</label>
+                            <input type="text" name="organizer_name" id="organizer_name" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('organizer_name', '') }}" />
+                            @error('organizer_name')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
