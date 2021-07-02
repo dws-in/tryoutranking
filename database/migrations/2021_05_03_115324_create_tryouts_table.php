@@ -16,8 +16,10 @@ class CreateTryoutsTable extends Migration
     Schema::create('tryouts', function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->char('name', 50);
+      $table->string('organizer_name');
       $table->text('description');
       $table->date('held');
+      $table->date('due');
       $table->bigInteger('user_id')->unsigned()->index();
       $table->timestamps();
     });

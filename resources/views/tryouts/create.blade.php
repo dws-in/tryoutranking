@@ -34,9 +34,18 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="held" class="block font-medium text-sm text-gray-700">Held On</label>
-                            <input type="text" name="held" id="held" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <input type="date" name="held" id="held" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                   value="{{ old('held', '') }}" />
                             @error('held')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="due" class="block font-medium text-sm text-gray-700">Due Date</label>
+                            <input type="date" name="due" id="due" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                  value="{{ old('due', '') }}" />
+                            @error('due')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>

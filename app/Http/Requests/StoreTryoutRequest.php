@@ -19,11 +19,17 @@ class StoreTryoutRequest extends FormRequest
             'name' => [
                 'required', 'string',
             ],
+            'organizer_name' => [
+                'required', 'string',
+            ],
             'description' => [
                 'required', 'string',
             ],
             'held' => [
-                'required', 'string',
+                'required', 'date',
+            ],
+            'due' => [
+                'required', 'date',
             ],
             // 'user_id' => [
             //     'required','exists:users,id'
