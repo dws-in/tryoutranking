@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTryoutRequest;
 use App\Http\Requests\UpdateTryoutRequest;
 use App\Models\Cluster;
+use App\Models\Pembahasan;
 use Illuminate\Http\Request;
 use App\Models\Tryout;
 use App\Repositories\TryoutRepository;
@@ -47,6 +48,8 @@ class TryoutController extends Controller
         $data['user_id'] = $user;
         Tryout::create($data);
         //$this->tryout->store($request);
+        
+
         return redirect()->route('tryouts.index');
     }
 

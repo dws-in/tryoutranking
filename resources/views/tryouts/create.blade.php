@@ -22,6 +22,15 @@
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="organizer_name" class="block font-medium text-sm text-gray-700">Organizer</label>
+                            <input type="text" name="organizer_name" id="organizer_name" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('organizer_name', '') }}" />
+                            @error('organizer_name')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
@@ -34,9 +43,18 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="held" class="block font-medium text-sm text-gray-700">Held On</label>
-                            <input type="text" name="held" id="held" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <input type="date" name="held" id="held" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                   value="{{ old('held', '') }}" />
                             @error('held')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="due" class="block font-medium text-sm text-gray-700">Due Date</label>
+                            <input type="date" name="due" id="due" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                  value="{{ old('due', '') }}" />
+                            @error('due')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>

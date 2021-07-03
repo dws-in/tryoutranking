@@ -54,6 +54,9 @@
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 <a href="{{ route('tryouts.show', $list->tryout->id) }}" class="">View</a>
                                             </span>
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                <a href="{{ route('myTryout.download', $list->tryout->id) }}" class="">Download Pembahasan</a>
+                                            </span>
                                             {{-- @can('tryouts_access')
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 <a href="{{ route('tryouts.edit', $tryout->tryout->id) }}" class="">Edit</a>

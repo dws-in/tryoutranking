@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRegisterTORequest;
+use App\Http\Requests\StoreRegisterTryoutRequest;
 use App\Models\Cluster;
 use App\Models\RegisterTryout;
 use App\Models\Score;
@@ -40,8 +40,8 @@ class RegisterTryoutController extends Controller
                 ->with('clusters', $clusters);
     }
 
-    public function store(StoreRegisterTORequest $request, $id){
-        // RegisterTO::create($request->validated());
+    public function store(StoreRegisterTryoutRequest $request, $id){
+        // RegisterTryout::create($request->validated());
 
         // $now = Carbon::now()->toDateTimeString();
         // $qrcode = $this->qrCode->generate("$request->id . $now");

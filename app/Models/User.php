@@ -14,7 +14,7 @@ use App\Models\Tryout;
 use App\Models\Score;
 use App\Models\Role;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
   use HasApiTokens;
   use HasFactory;
@@ -66,14 +66,13 @@ class User extends Authenticatable
     return $this->hasMany(Tryout::class);
   }
 
-  public function registerTO()
+  public function registerTryout()
   {
-      return $this->hasMany(RegisterTO::class);
+      return $this->hasMany(RegisterTryout::class);
   }
 
   public function score()
   {
     return $this->hasMany(Score::class);
   }
-
 }

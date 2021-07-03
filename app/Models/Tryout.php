@@ -17,8 +17,10 @@ class Tryout extends Model
   protected $primaryKey = 'id';
   protected $fillable = [
     'name',
+    'organizer_name',
     'description',
     'held',
+    'due',
     'user_id',
     'cluster_id',
   ];
@@ -28,9 +30,9 @@ class Tryout extends Model
     return $this->belongsTo(User::class, 'user_id');
   }
 
-  public function registerTO()
+  public function registerTryout()
   {
-      return $this->hasMany(RegisterTO::class);
+      return $this->hasMany(RegisterTryout::class);
   }
 
   public function score()
@@ -41,5 +43,10 @@ class Tryout extends Model
   public function clusters()
   {
       return $this->belongsTo(Cluster::class, 'cluster_id');
+  }
+
+  public function pembahasan()
+  {
+      return $this->hasOne(Pembahasan::class);
   }
 }
