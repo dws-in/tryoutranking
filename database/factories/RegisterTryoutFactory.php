@@ -29,7 +29,6 @@ class RegisterTryoutFactory extends Factory
             'school_name' => $this->faker->company(),
             'graduation_date' => $this->faker->dateTime(),
             'phone_number' => $this->faker->phoneNumber(),
-            'cluster_id' => rand(1,2),
         ];
     }
 }

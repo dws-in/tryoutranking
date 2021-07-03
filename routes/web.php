@@ -4,6 +4,7 @@ use App\Http\Controllers\myTryoutController;
 use App\Http\Controllers\MyTryOutController as ControllersMyTryOutController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\QRController;
+use App\Http\Controllers\RankingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterTryoutController;
 use App\Http\Controllers\RekomendasiController;
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('myTryout', MyTryOutController::class);
     Route::resource('scores', ScoreController::class);
     Route::resource('participant', ParticipantController::class);
+    Route::resource('ranking', RankingController::class);
 
     Route::prefix('register-to')->name('register-to.')->group(function () {
         Route::get('/create/{id}', [RegisterTryoutController::class, 'create'])->name('create');

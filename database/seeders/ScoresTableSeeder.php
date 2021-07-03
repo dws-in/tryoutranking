@@ -24,6 +24,7 @@ class ScoresTableSeeder extends Seeder
                 'economy' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0.0, $max = 100.0),
                 'history' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0.0, $max = 100.0),
                 'sociology' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0.0, $max = 100.0),
+                'passing_grade' =>$faker->randomfloat($nbMaxDecimals = 1, $min = 50.0, $max = 100.0)
             ]);
 	    }
     }

@@ -21,7 +21,6 @@ class RegisterTryout extends Model
         'school_name',
         'graduation_date',
         'phone_number',
-        'cluster_id',
     ];
 
     public function user()
@@ -36,12 +35,12 @@ class RegisterTryout extends Model
 
     public function cluster()
     {
-        return $this->hasOne(Cluster::class, 'cluster_id');
+        return $this->belongsTo(Cluster::class, 'cluster_id');
     }
 
-    public function scores()
+    public function score()
     {
-        return $this->hasOne(Score::class);
+        return $this->hasOne(Score::class, 'register_id');
     }
 
 }
