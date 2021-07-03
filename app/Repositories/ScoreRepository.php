@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Score;
 
 class ScoreRepository
@@ -13,9 +14,39 @@ class ScoreRepository
         $this->score = $score;
     }
 
+    public function indexBy()
+    {
+        $scores = DB::table('scores')->get();
+        return $scores;
+
+        // return $this->score->all();
+    }
+
     public function index()
     {
-        return $this->score->all();
+        $totals = DB::table('scores')->select('id','register_id','indonesia','english','mathematic','physic','biology','chemistry','geography','economy','history','sociology', DB::raw('SUM(
+            CASE
+              WHEN indonesia IS NULL
+              THEN 0
+              ELSE indonesia
+            END
+            +
+            CASE
+              WHEN english IS NULL
+              THEN 0
+              ELSE english
+            END
+            +
+            CASE
+              WHEN mathematic IS NULL
+              THEN 0
+              ELSE mathematic
+            END
+          ) as subtotal'))->orderBy('subtotal')->get();
+        $scores = DB::table('scores')->orderBy('total');
+        return $totals;
+
+        // return $this->score->all();
     }
 
     public function create($request)
@@ -25,7 +56,10 @@ class ScoreRepository
 
     public function read($id)
     {
-        return $this->score->findOrFail($id);
+        $score = DB::table('scores')->find($id);
+        return $score;
+
+        // return $this->score->findOrFail($id);
     }
 
     public function update($request, $id)
