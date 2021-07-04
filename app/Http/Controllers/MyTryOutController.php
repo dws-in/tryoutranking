@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pembahasan;
 use App\Models\RegisterTryout;
 use App\Models\Tryout;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -66,7 +67,7 @@ class MyTryOutController extends Controller
         $data->title = $request->title;
         $data->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Pembahasan berhasil ditambah');
     }
 
     /**
@@ -119,15 +120,22 @@ class MyTryOutController extends Controller
     public function download(Request $request, $id)
     {
         $tryout = Tryout::find($id);
-        if (now() > $tryout->due)
-        {
-             $file = Pembahasan::where('tryout_id', $id)
-                            ->first();
+        try {
+            $pembahasan = Pembahasan::where('tryout_id', $id)
+                                ->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->back()->with('error', 'Pembahasan belum tersedia');
+        }
 
-            return response()->download(public_path('assets/'.$file->file));
+        if (now() > $tryout->due and $pembahasan != NULL)
+        {
+            //  $file = Pembahasan::where('tryout_id', $id)
+            //                 ->first();
+
+            return response()->download(public_path('assets/'.$pembahasan->file));
         }
         else {
-            return "Waktu pengerjaan belum berakhir";
+            return redirect()->back()->with('error', 'Waktu pengerjaan Tryout belum berakhir');
         }
     }
 }

@@ -3,6 +3,12 @@
         <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
             <div class="md:flex">
                 <div class="w-full">
+                    @if (session()->has('message'))
+                    <div role="alert">
+                        <div class="bg-green-100 border-l-4 border-orange-500 text-orange-700 p-4">
+                            {{ session()->get('message') }}</div>
+                    </div>
+                    @endif
                     <div class="p-4 border-b-2"> <span class="text-lg font-bold text-gray-600">Add documents</span>
                     </div>
                     <form action="{{ route('myTryout.store') }}" method="post" enctype="multipart/form-data">

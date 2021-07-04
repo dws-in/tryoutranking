@@ -7,16 +7,16 @@
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
-            @if (session()->has('message'))
-            <div role="alert">
-                <div class="bg-green-100 border-l-4 border-orange-500 text-orange-700 p-4">
-                    {{ session()->get('message') }}</div>
-            </div>
-            @endif
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            @if (session()->has('success'))
+                            <div role="alert">
+                                <div class="bg-green-100 border-l-4 border-orange-500 text-orange-700 p-4">
+                                    {{ session()->get('success') }}</div>
+                            </div>
+                            @endif
                             <table class="min-w-full divide-y divide-gray-200 w-full">
                                 <thead>
                                     <tr>
@@ -78,8 +78,7 @@
                                             </span>
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                <a href="{{ route('ranking.show', $list->id) }}"
-                                                    class="">Ranking</a>
+                                                <a href="{{ route('ranking.show', $list->id) }}" class="">Ranking</a>
                                             </span>
                                             {{-- @can('tryouts_access')
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
