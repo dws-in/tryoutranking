@@ -47,10 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/store/{id}', [RegisterTryoutController::class, 'store'])->name('store');
         Route::get('/show/{id}', [RegisterTryoutController::class, 'show'])->name('show');
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> 56484aefcc5d908424d73bbbc4ee460954d682c8
+    
     Route::prefix('myTryout')->name('myTryout.')->group(function () {
          Route::get('/download/{id}', [MyTryOutController::class, 'download'])->name('download');
     });
