@@ -43,8 +43,7 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $this->userRepository->create($request->validated());
-
+        $this->userRepository->create($request);
         return redirect()->route('users.index');
     }
 
@@ -54,17 +53,15 @@ class UserController extends Controller
         return view('users.edit', compact('user', 'roles'));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $this->userRepository->update($request->validated(), $user->id);
-
+        $this->userRepository->update($request, $id);
         return redirect()->route('users.index');
     }
 
     public function destroy($id)
     {
         $this->userRepository->delete($id);
-
         return redirect()->route('users.index');
     }
 }

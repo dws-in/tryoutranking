@@ -7,13 +7,13 @@
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
-            @can('tryouts_access')
             <div class="row">
+            @can('tryouts_access')
                 <div class="block mb-8">
                     <a href="{{ route('tryouts.create') }}"
                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Tryout</a>
                 </div>
-                @endcan
+            @endcan
                 {{-- <form class="form-inline ml-0 ml-md-3" action="" method="GET">
                 <div class="shadow flex">
                     <input class="w-80 rounded p-2" type="text" placeholder="Search...">

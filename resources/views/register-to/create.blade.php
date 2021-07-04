@@ -1,11 +1,10 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h1 class="font-semibold text-gray-800 leading-tight" style="font-size: xx-large;">
-            {{ __('Daftar TryOut') }}
-        </h1>
-        <p style="font-size: small;">Ayo daftar tryout nya gan</p>
-    </x-slot>
-
+<x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Register Tryout
+    </h2>
+</x-slot>
+{{--
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
@@ -49,26 +48,45 @@
                         <span class="text-danger">{{ $errors->first('phone_number') }}</span>
                         @endif
                     </div>
-
-                    {{-- Cluster --}}
-                    {{-- <div class="form-group">
-                        <label for="name" class="col-md-4 col-form-label">Cluster</label>
-                        <div class="col-md-6">
-                            <select name="cluster_id" id="cluster" class="form-control">
-                                <option value="">== Select Cluster ==</option>
-                                @foreach ($clusters as $cluster)
-                                <option value="{{ $cluster->id}}">{{ $cluster->cluster_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> --}}
-
                     <div class="form-group pt-3 float-right">
                         <button type="submit"
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
                     </div>
                 </form>
             </div>
+        </div>
+    </div> --}}
+
+    <div class="w-full">
+        <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
+            <form action="{{ route('register-to.store', $tryout->id) }}" method="POST">
+                @csrf
+                <div class="mb-5">
+                    <label for="user_name" class="block mb-2 font-bold text-gray-600">Name</label>
+                    <input type="text" id="user_name" name="user_name" placeholder="name"
+                        class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
+                </div>
+
+                <div class="mb-5">
+                    <label for="school_name" class="block mb-2 font-bold text-gray-600">School Name</label>
+                    <input type="text" id="school_name" name="school_name" placeholder="school name"
+                        class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
+                </div>
+
+                <div class="mb-5">
+                    <label for="graduation_date" class="block mb-2 font-bold text-gray-600">Graduation Year</label>
+                    <input type="text" id="graduation_date" name="graduation_date" placeholder="graduation year"
+                        class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
+                </div>
+
+                <div class="mb-5">
+                    <label for="phone_number" class="block mb-2 font-bold text-gray-600">Phone Number</label>
+                    <input type="text" id="phone_number" name="phone_number" placeholder="phone number"
+                        class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
+                </div>
+
+                <button class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">Submit</button>
+            </form>
         </div>
     </div>
 </x-app-layout>

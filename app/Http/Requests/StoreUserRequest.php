@@ -23,10 +23,10 @@ class StoreUserRequest extends FormRequest
                 'required',
                 'unique:users,email,',
             ],
-            'password'    => [
-                'string',
-                'required',
-            ],
+            // 'password'    => [
+            //     'string',
+            //     'required',
+            // ],
             'role_id' => [
                 'required',
                 'exists:roles,id',

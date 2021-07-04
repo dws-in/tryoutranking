@@ -27,6 +27,6 @@ class QRCodeServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        $this->app->bind(QRCodeServiceInterface::class, QRCodeServiceLibrary1::class);
+        $this->app->bind(QRCodeServiceInterface::class, QRCodeServiceLibrary2::class);
     }
 }
