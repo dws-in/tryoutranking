@@ -4,7 +4,6 @@
             My TryOut
         </h2>
     </x-slot>
-
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="flex flex-col">
@@ -58,7 +57,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.show', $list->tryout->id) }}"
+                                                <a href="{{ route('register-to.show', $list->tryout->id) }}"
                                                     class="">View</a>
                                             </span>
                                             <span
@@ -68,12 +67,15 @@
                                             </span>
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                <a href="{{ route('ranking.show', $list->tryout_id) }}" class="">Ranking</a>
+                                                <a href="{{ route('ranking.show', $list->tryout_id) }}"
+                                                    class="">Ranking</a>
                                             </span>
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                 <a href="{{ route('rekomendasi.index') }}" class="">Rekomendasi</a>
                                             </span>
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 <a href="{{ route('scores.show', $list->id) }}" class="">Score</a>
                                             </span>
                                             {{-- @can('tryouts_access')

@@ -15,18 +15,18 @@ use Illuminate\Support\Facades\DB;
 
 class RegisterTryoutController extends Controller
 {
-
-    public function index()
-    {
-        //
-
-    }
-
     protected $qrCode;
+    protected $qrCode_service;
 
     public function __construct(QRCodeServiceInterface $qrCode)
     {
         $this->qrCode = $qrCode;
+
+    }
+
+    public function index()
+    {
+        //
 
     }
 
@@ -42,10 +42,6 @@ class RegisterTryoutController extends Controller
 
     public function store(StoreRegisterTryoutRequest $request, $id){
         // RegisterTryout::create($request->validated());
-
-        // $now = Carbon::now()->toDateTimeString();
-        // $qrcode = $this->qrCode->generate("$request->id . $now");
-        //$tryout = DB::table('tryouts')->where('id',$id)->get();
 
         $tryout = DB::table('tryouts')
             ->where('id', $id)
@@ -70,7 +66,8 @@ class RegisterTryoutController extends Controller
         $score->passing_grade = 0;
         $score->save();
 
-        return redirect()->route('tryouts.index');
+        session()->flash('success', 'Berhasil mendaftar Tryout');
+        return redirect()->route('myTryout.index');
         /*
         * use for endroid library
         */
@@ -86,6 +83,17 @@ class RegisterTryoutController extends Controller
     public function show($id)
     {
         //
+        $tryout = Tryout::find($id);
+        $participant = RegisterTryout::where('tryout_id', $id)
+                                ->first();
+
+        $now = Carbon::now()->toDateTimeString();
+        $qrCode = $this->qrCode->generate($participant->tryout_id.'|'.$participant->user_name.'|'.$participant->school_name.'|'.$now);
+
+        return view('register-to.show')
+                ->with('tryout', $tryout)
+                ->with('qrCode', $qrCode)
+                ->with('success', 'Berhasil mendaftar tryout');
     }
 
     public function edit($id)
