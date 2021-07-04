@@ -24,7 +24,7 @@
                                     </div>
                                     <input type="file" class="h-full w-full opacity-0" name="file">
                                 </div> --}}
-                                <input type="file" class="h-40" name="file">
+                                <input type="file" class="h-10" name="file">
                                 <div class="flex justify-between items-center text-gray-400"> <span>Accepted file
                                         type:.pdf
                                         only</span> <span class="flex items-center "><i class="fa fa-lock mr-1"></i>
