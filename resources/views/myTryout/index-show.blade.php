@@ -65,8 +65,15 @@
                                                 <a href="{{ route('myTryout.show', $list->id) }}" class="">Upload
                                                     Pembahasan</a>
                                             </span>
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                <a href="{{ route('participant.show', $list->id) }}" class="">Participant</a>
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                <a href="{{ route('participant.show', $list->id) }}"
+                                                    class="">Participant</a>
+                                            </span>
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                <a href="{{ route('ranking.show', $list->id) }}"
+                                                    class="">Ranking</a>
                                             </span>
                                             {{-- @can('tryouts_access')
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">

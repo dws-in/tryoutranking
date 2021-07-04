@@ -6,7 +6,6 @@ use App\Models\Tryout;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Model;
-
 class Search extends Component
 {
     use WithPagination;
