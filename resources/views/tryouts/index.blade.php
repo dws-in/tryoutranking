@@ -11,7 +11,7 @@
             @can('tryouts_access')
                 <div class="block mb-8">
                     <a href="{{ route('tryouts.create') }}"
-                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ADD</a>
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Tryout</a>
                 </div>
             @endcan
                 {{-- <form class="form-inline ml-0 ml-md-3" action="" method="GET">
