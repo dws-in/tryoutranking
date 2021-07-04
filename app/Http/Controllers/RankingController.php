@@ -56,10 +56,10 @@ class RankingController extends Controller
 
         $rankings =  DB::table('register_tryouts')
                             ->join('scores', 'register_tryouts.id', '=', 'scores.register_id')
+                            ->join('tryouts', 'register_tryouts.tryout_id', '=', 'tryouts.id')
                             ->where('tryout_id', $id)
                             ->orderBy('passing_grade', 'DESC')
                             ->get();
-
         return view('ranking.show', compact('rankings'));
     }
 
