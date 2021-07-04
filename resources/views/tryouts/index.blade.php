@@ -14,7 +14,7 @@
                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Tryout</a>
                 </div>
                 @endcan
+                @livewire('search')
         </div>
-        @livewire('search')
     </div>
 </x-app-layout>

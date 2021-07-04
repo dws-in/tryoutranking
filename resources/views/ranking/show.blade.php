@@ -90,7 +90,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $ranking->english }}
                                         </td>
-
+                                        @if($ranking->cluster_id == 1)
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $ranking->mathematic }}
                                         </td>
@@ -106,7 +106,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $ranking->chemistry }}
                                         </td>
-
+                                        @else
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $ranking->geography }}
                                         </td>
@@ -122,6 +122,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $ranking->sociology }}
                                         </td>
+                                        @endif
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
                                             {{ $ranking->passing_grade }}
                                         </td>
