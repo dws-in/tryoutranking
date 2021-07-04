@@ -14,7 +14,7 @@ use App\Models\Tryout;
 use App\Models\Score;
 use App\Models\Role;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
   use HasApiTokens;
   use HasFactory;
