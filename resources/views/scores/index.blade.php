@@ -13,7 +13,7 @@
                 <a href="{{ route('tryouts.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back</a>
             </div>
             <div class="block mb-8 float-right">
-                <a href="{{ route('scores.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add</a>
+                <a href="{{ route('scores.create', ['tryout_id' => $tryout_id]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add</a>
             </div>
             <div class="mt-20 flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -23,7 +23,10 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Name
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Perticipant
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Indonesia
@@ -64,7 +67,11 @@
                                 @foreach ($scores as $score)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $score->registerTryout->user->name }}
+                                            {{ $score->id }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $score->name }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -109,12 +116,12 @@
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('scores.show', $score->id) }}" class="">View</a>
+                                                <a href="{{ route('scores.show', ['tryout_id' => $tryout_id, 'id' => $score->id]) }}" class="">View</a>
                                             </span>
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('scores.edit', $score->id) }}" class="">Edit</a>
+                                                <a href="{{ route('scores.edit', ['tryout_id' => $tryout_id, 'id' => $score->id]) }}" class="">Edit</a>
                                             </span>
-                                            <form class="inline-block" action="{{ route('scores.destroy', $score->id) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
+                                            <form class="inline-block" action="{{ route('scores.destroy', ['tryout_id' => $tryout_id, 'id' => $score->id]) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800" value="Delete">

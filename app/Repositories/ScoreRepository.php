@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Score;
 
 class ScoreRepository
@@ -13,32 +14,66 @@ class ScoreRepository
         $this->score = $score;
     }
 
-    public function index()
+    public function index($id)
     {
-        return $this->score->all();
+        $totals = DB::table('scores')
+            ->join('register_tryouts', 'scores.register_id', '=', 'register_tryouts.id')
+            ->join('users', 'register_tryouts.user_id', '=', 'users.id')
+            ->select('scores.id','users.name','indonesia','english','mathematic','physic','biology','chemistry','geography','economy','history','sociology',
+                DB::raw('indonesia + english + mathematic + physic + biology + chemistry + geography + economy + history + sociology as total'))
+            ->where('tryout_id',$id)
+            ->orderByDesc('total')
+            ->get();
+        return $totals;
     }
 
-    public function create($request)
+    public function store($request)
     {
-        $this->score->create($request);
+        $score = DB::table('scores')
+            ->insertGetId([
+                'register_id' => $request->register_id,
+                'indonesia' => $request->indonesia,
+                'english' => $request->english,
+                'mathematic' => $request->mathematic,
+                'physic' => $request->physic,
+                'biology' => $request->biology,
+                'chemistry' => $request->chemistry,
+                'geography' => $request->geography,
+                'economy' => $request->economya,
+                'history' => $request->history,
+                'sociology' => $request->sociology,
+            ]);
     }
 
-    public function read($id)
+    public function show($id)
     {
-        return $this->score->findOrFail($id);
+        $score = DB::table('scores')->find($id);
+        return $score;
     }
 
     public function update($request, $id)
     {
-        $score = Score::findOrFail($id);
-        $input = $request->validated();
-        $score->update($input);
-        $score->save();
+        $score = DB::table('scores')
+            ->where('id', $id)
+            ->update([
+                'register_id' => $request->register_id,
+                'indonesia' => $request->indonesia,
+                'english' => $request->english,
+                'mathematic' => $request->mathematic,
+                'physic' => $request->physic,
+                'biology' => $request->biology,
+                'chemistry' => $request->chemistry,
+                'geography' => $request->geography,
+                'economy' => $request->economya,
+                'history' => $request->history,
+                'sociology' => $request->sociology,
+            ]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $this->score->findOrFail($id);
-        $this->score->delete();
+        $score = DB::table('scores')
+            ->find($id)
+            ->delete();
     }
 }
