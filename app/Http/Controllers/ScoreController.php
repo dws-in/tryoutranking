@@ -6,59 +6,58 @@ use App\Models\Score;
 use App\Repositories\ScoreRepository;
 use App\Http\Requests\StoreScoreRequest;
 use App\Http\Requests\UpdateScoreRequest;
-use App\Repositories\TryoutRepository;
 
 class ScoreController extends Controller
 {
     private $scoreRepository;
 
-    public function __construct(TryoutRepository $tryoutRepository, ScoreRepository $scoreRepository)
+    public function __construct(ScoreRepository $scoreRepository)
     {
-        $this->tryoutRepository = $tryoutRepository;
         $this->scoreRepository = $scoreRepository;
     }
 
-    public function index($tryout_id)
+    public function index()
     {
-        $scores = $this->scoreRepository->index($tryout_id);
+        $scores = $this->scoreRepository->index();
 
-        return view('scores.index')->with('tryout_id', $tryout_id)->with('scores', $scores);
+        return view('scores.index')->with('scores', $scores);
     }
 
-    public function show($tryout_id, $id)
+    public function show($id)
     {
-        $score = $this->scoreRepository->show($id);
-        return view('scores.show')->with('tryout_id', $tryout_id)->with('score', $score);
+        $score = $this->scoreRepository->read($id);
+
+        return view('scores.show', compact('score'));
     }
 
-    public function create($tryout_id)
+    public function create()
     {
-        return view('scores.create')->with('tryout_id', $tryout_id);
+        return view('scores.create');
     }
 
-    public function store($tryout_id, StoreScoreRequest $request)
+    public function store(StoreScoreRequest $request)
     {
-        $this->scoreRepository->store($request->validated());
-        return redirect()->route('scores.index')->with('tryout_id', $tryout_id);
+        $this->scoreRepository->create($request->validated());
+
+        return redirect()->route('scores.index');
     }
 
-    public function edit($tryout_id, $id)
+    public function edit($id)
     {
-        $score = $this->scoreRepository->show($id);
-        return view('scores.edit')->with('tryout_id', $tryout_id)->with('score', $score);
+        $score = $this->scoreRepository->read($id);
+        return view('scores.edit', compact('score'));
     }
 
-    public function update($tryout_id, $id, UpdateScoreRequest $request)
+    public function update(UpdateScoreRequest $request, $id)
     {
-        $this->scoreRepository->update($request->validated(), $id);
-
-        return redirect()->route('scores.index')->with('tryout_id', $tryout_id);
+        $this->scoreRepository->update($request, $id);
+        return redirect()->route('scores.index');
     }
 
-    public function destroy($tryout_id, $id)
+    public function destroy($id)
     {
-        $this->scoreRepository->destroy($id);
+        $this->scoreRepository->delete($id);
 
-        return redirect()->route('scores.index')->with('tryout_id', $tryout_id);
+        return redirect()->route('scores.index');
     }
 }
