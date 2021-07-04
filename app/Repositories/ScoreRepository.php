@@ -64,8 +64,10 @@ class ScoreRepository
 
     public function update($request, $id)
     {
-        $this->score->findOrFail($id);
-        $this->score->update($request);
+        $score = Score::findOrFail($id);
+        $input = $request->validated();
+        $score->update($input);
+        $score->save();
     }
 
     public function delete($id)

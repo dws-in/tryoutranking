@@ -16,7 +16,6 @@ class CreateRegisterTryoutsTable extends Migration
             $table->string("school_name");
             $table->date("graduation_date");
             $table->string("phone_number");
-            $table->foreignId('cluster_id')->references('id')->on('clusters')->cascadeOnDelete();
             $table->timestamps();
         });
 

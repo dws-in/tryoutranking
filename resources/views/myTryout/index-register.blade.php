@@ -13,26 +13,31 @@
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200 w-full">
                                 <thead>
-                                <tr>
-                                    <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        ID
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Description
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Held on
-                                    </th>
-                                    <th scope="col" width="200" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
-                                    </th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col" width="50"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            ID
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Name
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Description
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Held on
+                                        </th>
+                                        <th scope="col" width="200"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Actions
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($tryouts as $list)
+                                    @foreach ($tryouts as $list)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $list->tryout->id }}
@@ -51,25 +56,44 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.show', $list->tryout->id) }}" class="">View</a>
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                <a href="{{ route('tryouts.show', $list->tryout->id) }}"
+                                                    class="">View</a>
+                                            </span>
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                <a href="{{ route('myTryout.download', $list->tryout->id) }}"
+                                                    class="">Download Pembahasan</a>
+                                            </span>
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                <a href="{{ route('ranking.show', $list->tryout_id) }}" class="">Ranking</a>
+                                            </span>
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                <a href="{{ route('rekomendasi.index') }}" class="">Rekomendasi</a>
                                             </span>
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('myTryout.download', $list->tryout->id) }}" class="">Download Pembahasan</a>
+                                                <a href="{{ route('scores.show', $list->id) }}" class="">Score</a>
                                             </span>
                                             {{-- @can('tryouts_access')
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('tryouts.edit', $tryout->tryout->id) }}" class="">Edit</a>
+                                                <a href="{{ route('tryouts.edit', $tryout->tryout->id) }}"
+                                            class="">Edit</a>
                                             </span>
-                                            <form class="inline-block" action="{{ route('tryouts.destroy', ['id' => $tryout->id]) }}" method="POST" onsubmit="return confirm('Delete selected item?');">
+                                            <form class="inline-block"
+                                                action="{{ route('tryouts.destroy', ['id' => $tryout->id]) }}"
+                                                method="POST" onsubmit="return confirm('Delete selected item?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800" value="Delete">
+                                                <input type="submit"
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                                                    value="Delete">
                                             </form>
                                             @endcan --}}
                                         </td>
                                     </tr>
-                                @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

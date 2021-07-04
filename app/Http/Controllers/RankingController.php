@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pembahasan;
 use App\Models\RegisterTryout;
-use App\Models\Tryout;
+use App\Models\Score;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class MyTryOutController extends Controller
+class RankingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,21 +17,6 @@ class MyTryOutController extends Controller
     public function index()
     {
         //
-        $user = Auth::user()->id;
-        $role = Auth::user()->role_id;
-        if ($role == 3){
-            $tryouts = RegisterTryout::where('user_id', $user)
-                    ->get();
-
-            $file = Pembahasan::all();
-            return view('myTryout.index-register', compact('tryouts', 'file'));
-        }
-        elseif (($role == 1) or ($role == 2)) {
-            $tryouts = Tryout::where('user_id', $user)
-                    ->get();
-
-            return view('myTryout.index-show', ['tryouts' => $tryouts]);
-        }
     }
 
     /**
@@ -55,18 +38,6 @@ class MyTryOutController extends Controller
     public function store(Request $request)
     {
         //
-        $data = new Pembahasan();
-        $file = $request->file;
-        $filename = $file->getClientOriginalName();
-
-        $request->file->move('assets', $filename);
-        $data->file = $filename;
-
-        $data->tryout_id = $request->tryout_id;
-        $data->title = $request->title;
-        $data->save();
-
-        return redirect()->back();
     }
 
     /**
@@ -78,8 +49,18 @@ class MyTryOutController extends Controller
     public function show($id)
     {
         //
-        $tryout = Tryout::find($id);
-        return view('myTryout.upload', compact('tryout'));
+        // $rankings = RegisterTryout::with('scores')
+        //                         ->where('tryout_id', $id)
+        //                         ->orderByDesc('scores.passing_grade')
+        //                         ->get();
+
+        $rankings =  DB::table('register_tryouts')
+                            ->join('scores', 'register_tryouts.id', '=', 'scores.register_id')
+                            ->join('tryouts', 'register_tryouts.tryout_id', '=', 'tryouts.id')
+                            ->where('tryout_id', $id)
+                            ->orderBy('passing_grade', 'DESC')
+                            ->get();
+        return view('ranking.show', compact('rankings'));
     }
 
     /**
@@ -114,20 +95,5 @@ class MyTryOutController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function download(Request $request, $id)
-    {
-        $tryout = Tryout::find($id);
-        if (now() > $tryout->due)
-        {
-             $file = Pembahasan::where('tryout_id', $id)
-                            ->first();
-
-            return response()->download(public_path('assets/'.$file->file));
-        }
-        else {
-            return "Waktu pengerjaan belum berakhir";
-        }
     }
 }

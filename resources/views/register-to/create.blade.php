@@ -51,7 +51,7 @@
                     </div>
 
                     {{-- Cluster --}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="name" class="col-md-4 col-form-label">Cluster</label>
                         <div class="col-md-6">
                             <select name="cluster_id" id="cluster" class="form-control">
@@ -61,7 +61,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group pt-3 float-right">
                         <button type="submit"

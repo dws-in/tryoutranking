@@ -48,10 +48,9 @@ class ScoreController extends Controller
         return view('scores.edit', compact('score'));
     }
 
-    public function update(UpdateScoreRequest $request, Score $score)
+    public function update(UpdateScoreRequest $request, $id)
     {
-        $this->scoreRepository->update($request->validated(), $score->id);
-
+        $this->scoreRepository->update($request, $id);
         return redirect()->route('scores.index');
     }
 

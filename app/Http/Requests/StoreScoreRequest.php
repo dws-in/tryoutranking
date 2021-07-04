@@ -47,6 +47,9 @@ class StoreScoreRequest extends FormRequest
             'sociology' => [
                 'required','numeric'
             ],
+            'passing_grade' => [
+                'required','numeric'
+            ],
         ];
     }
 }

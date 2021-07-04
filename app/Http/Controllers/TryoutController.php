@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class TryoutController extends Controller
 {
     private $tryout;
+    public $searchTerm;
     public function __construct(TryoutRepository $tryout)
     {
         $this->tryout = $tryout;
@@ -48,8 +49,6 @@ class TryoutController extends Controller
         $data['user_id'] = $user;
         Tryout::create($data);
         //$this->tryout->store($request);
-        
-
         return redirect()->route('tryouts.index');
     }
 

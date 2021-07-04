@@ -67,6 +67,7 @@ class RegisterTryoutController extends Controller
         $score->economy = 0;
         $score->history = 0;
         $score->sociology = 0;
+        $score->passing_grade = 0;
         $score->save();
 
         return redirect()->route('tryouts.index');

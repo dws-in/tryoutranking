@@ -34,9 +34,6 @@ class StoreRegisterTryoutRequest extends FormRequest
             'phone_number' => [
                 'required',
             ],
-             'cluster_id' => [
-                'required',
-            ],
         ];
     }
 }

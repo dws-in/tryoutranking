@@ -22,6 +22,7 @@ class CreateScoresTable extends Migration
       $table->float('economy')->nullable();
       $table->float('history')->nullable();
       $table->float('sociology')->nullable();
+      $table->float('passing_grade')->nullable();
       $table->timestamps();
     });
   }
