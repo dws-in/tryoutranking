@@ -7,10 +7,10 @@
   <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="block mb-8">
-                <a href="{{ route('scores.index') }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Back</a>
+                <a href="{{ route('scores.index', ['tryout_id' => $tryout_id]) }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Back</a>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="POST" action="{{ route('scores.update', $score->id) }}">
+                <form method="PUT" action="{{ route('scores.update', ['tryout_id' => $tryout_id, 'id' => $score->id]) }}">
                     @csrf
                     @method('put')
                     <div class="shadow overflow-hidden sm:rounded-md">
