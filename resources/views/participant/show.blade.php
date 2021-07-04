@@ -52,7 +52,7 @@
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                <a href="{{ route('scores.show', ['tryout_id' => $participant->tryout_id, 'id' => $participant->id]) }}" class="">Score</a>
+                                                <a href="{{ route('scores.show', ['score' => $participant->score_id]) }}" class="">Score</a>
                                             </span>
                                         </td>
                                     </tr>
