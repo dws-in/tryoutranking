@@ -13,7 +13,7 @@ class UserRepository
         $this->user = $user;
     }
 
-    
+
     public function index()
     {
         return $this->user->all();
@@ -21,7 +21,9 @@ class UserRepository
 
     public function create($request)
     {
-        $this->user->create($request);
+        $data = $request->validated();
+        $data['password'] = bcrypt($request->password);
+        $this->user->create($data);
     }
 
     public function read($id)
@@ -31,13 +33,15 @@ class UserRepository
 
     public function update($request, $id)
     {
-        $this->user->findOrFail($id);
-        $this->user->update($request);
+
+        $user = User::findOrFail($id);
+        $user->update($request->validated());
+        $user->save();
     }
 
     public function delete($id)
     {
-        $this->user->findOrFail($id);
-        $this->user->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
     }
 }
