@@ -49,7 +49,8 @@ class TryoutController extends Controller
         $data['user_id'] = $user;
         Tryout::create($data);
         //$this->tryout->store($request);
-        return redirect()->route('tryouts.index');
+        return redirect()->route('myTryout.index')
+                        ->with('success', 'Tryout Berhasil ditambah');
     }
 
     public function show($id)

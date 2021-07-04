@@ -28,6 +28,7 @@ class SupportController extends Controller
         $support = Support::create($request->validated());
         $id = DB::table('supports')->count();
         Mail::to($request->email)->send(new SupportMail($id, $request->email, $request->description));
-        return redirect()->route('support.create')->with('alert', 'Email sent successfully!');
+        // return redirect()->route('support.create')->with('alert', 'Email sent successfully!');
+        return redirect()->back()->with('message', 'Pesan berhasil dikirim');
     }
 }

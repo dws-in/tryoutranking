@@ -34,8 +34,8 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
-                            <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('description', '') }}" />
+                            <textarea type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('description', '') }}" ></textarea>
                             @error('description')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
