@@ -11,7 +11,7 @@ class ScoresTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-    	foreach (range(1,20) as $i) {
+    	foreach (range(1,50) as $i) {
             Score::insert([
                 'register_id' => $i,
                 'indonesia' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0.0, $max = 100.0),

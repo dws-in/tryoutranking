@@ -15,6 +15,6 @@ class RegisterTryoutSeeder extends Seeder
     public function run()
     {
         //
-        RegisterTryout::factory()->count(20)->create();
+        RegisterTryout::factory()->count(50)->create();
     }
 }
