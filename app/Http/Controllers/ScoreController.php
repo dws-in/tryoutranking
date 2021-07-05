@@ -51,7 +51,8 @@ class ScoreController extends Controller
     public function update(UpdateScoreRequest $request, $id)
     {
         $this->scoreRepository->update($request, $id);
-        return redirect()->route('scores.index');
+        return redirect()->route('myTryout.index')
+                            ->with('message', 'Score berhasil diupdate');
     }
 
     public function destroy($id)

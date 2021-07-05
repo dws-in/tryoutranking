@@ -10,7 +10,7 @@
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <!-- Belum ada tryout id yang diparsing ke ranking -->
             <div class="block mb-8 float-left">
-                <a href="{{ route('tryouts.index') }}"
+                <a href="{{ route('myTryout.index') }}"
                     class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back</a>
             </div>
             <div class="mt-20 flex flex-col">
@@ -32,7 +32,7 @@
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             English
                                         </th>
-                                       @if($rankings[1]->cluster_id == 1)
+                                       @if($rankings[0]->cluster_id == 1)
                                         <th scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Mathematic

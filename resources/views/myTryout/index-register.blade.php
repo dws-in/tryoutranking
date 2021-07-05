@@ -82,10 +82,6 @@
                                                     class="">Ranking</a>
                                             </span>
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                <a href="{{ route('rekomendasi.index') }}" class="">Rekomendasi</a>
-                                            </span>
-                                            <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 <a href="{{ route('scores.show', $list->id) }}" class="">Score</a>
                                             </span>

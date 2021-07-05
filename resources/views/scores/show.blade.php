@@ -8,7 +8,7 @@
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="block mb-8">
-                <a href="{{ route('scores.index') }}"
+                <a href="{{ route('myTryout.index') }}"
                     class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Back</a>
             </div>
             @can('tryouts_access')
@@ -21,6 +21,12 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            @if (session()->has('message'))
+                            <div role="alert">
+                                <div class="bg-green-100 border-l-4 border-orange-500 text-orange-700 p-4">
+                                    {{ session()->get('message') }}</div>
+                            </div>
+                            @endif
                             <table class="min-w-full divide-y divide-gray-200 w-full">
                                 <tr class="border-b">
                                     <th scope="col"

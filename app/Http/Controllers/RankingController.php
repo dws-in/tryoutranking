@@ -18,12 +18,12 @@ class RankingController extends Controller
     {
         //
     }
-    
+
     public function store(Request $request)
     {
         //
     }
-    
+
     public function show($id)
     {
         //
@@ -40,17 +40,17 @@ class RankingController extends Controller
                             ->get();
         return view('ranking.show', compact('rankings'));
     }
-    
+
     public function edit($id)
     {
         //
     }
-    
+
     public function update(Request $request, $id)
     {
         //
     }
-    
+
     public function destroy($id)
     {
         //
