@@ -1,21 +1,4 @@
 <x-app-layout>
-<<<<<<< HEAD
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Register Tryout
-        </h2>
-    </x-slot>
-
-    <div class="w-full">
-        <div class="bg-white flex-auto p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-            <form action="{{ route('register-to.store', $tryout->id) }}" method="POST">
-                @csrf
-                <div class="mb-5">
-                    <label for="user_name" class="block mb-2 font-bold text-gray-600">Name</label>
-                    <input type="text" id="user_name" name="user_name" placeholder="name"
-                        class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
-                </div>
-=======
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         Register Tryout
@@ -40,38 +23,28 @@
                         <input type="text" id="school_name" name="school_name" placeholder="school name"
                             class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
                     </div>
->>>>>>> b1eb8f67b2fdb71e9d3b6acaa02a9c055c2b2e10
 
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <label for="graduation_date" class="block mb-2 font-bold text-gray-600">Graduation Year</label>
-                        <input type="text" id="graduation_date" name="graduation_date" placeholder="graduation year"
+                        <input type="date" id="graduation_date" name="graduation_date" placeholder="graduation year"
                             class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
                     </div>
 
-<<<<<<< HEAD
-                <div class="mb-5">
-                    <label for="graduation_date" class="block mb-2 font-bold text-gray-600">Graduation Date</label>
-                    <input type="date" id="graduation_date" name="graduation_date" placeholder="yyyy-mm-dd"
-                        class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
-                </div>
-=======
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <label for="phone_number" class="block mb-2 font-bold text-gray-600">Phone Number</label>
                         <input type="text" id="phone_number" name="phone_number" placeholder="phone number"
                             class="border border-gray-300 shadow p-3 w-full rounded mb-" required>
                     </div>
->>>>>>> b1eb8f67b2fdb71e9d3b6acaa02a9c055c2b2e10
-
                     <button class="float-right bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
                 </div>
             </form>
             </div>
         </div>
     </div>
-<!-- 
+<!--
     <div class="w-full">
         <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-           
+
         </div>
     </div> -->
 </x-app-layout>
