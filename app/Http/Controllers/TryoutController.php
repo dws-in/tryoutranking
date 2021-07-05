@@ -43,12 +43,7 @@ class TryoutController extends Controller
 
     public function store(StoreTryoutRequest $request)
     {
-
-        $user = Auth::user()->id;
-        $data = $request->validated();
-        $data['user_id'] = $user;
-        Tryout::create($data);
-        //$this->tryout->store($request);
+        $this->tryout->store($request);
         return redirect()->route('myTryout.index')
                         ->with('message', 'Tryout Berhasil ditambah');
     }

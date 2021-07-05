@@ -58,13 +58,11 @@
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                     <a href="{{ route('tryouts.show', $tryout->id) }}" class="">View</a>
                                 </span>
-                                @can('tryouts_access')
+                                @can('edit_tryout_access')
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     <a href="{{ route('participant.show', $tryout->id) }}" class="">Participant</a>
                                 </span>
-                                @endcan
-                                @can('edit_tryout_access')
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                     <a href="{{ route('tryouts.edit', $tryout->id) }}" class="">Edit</a>
                                 </span>
