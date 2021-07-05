@@ -11,10 +11,10 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            @if (session()->has('success'))
+                            @if (session()->has('message'))
                             <div role="alert">
                                 <div class="bg-green-100 border-l-4 border-orange-500 text-orange-700 p-4">
-                                    {{ session()->get('success') }}</div>
+                                    {{ session()->get('message') }}</div>
                             </div>
                             @endif
                             <table class="min-w-full divide-y divide-gray-200 w-full">
@@ -30,11 +30,11 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Description
+                                            Cluster
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Held on
+                                            Due Date
                                         </th>
                                         <th scope="col" width="200"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -54,17 +54,20 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $list->description }}
+                                            {{ $list->clusters->cluster_name }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $list->held }}
+                                            {{ $list->due }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 <a href="{{ route('tryouts.show', $list->id) }}" class="">View</a>
+                                            </span>
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-blue-800">
+                                                <a href="{{ route('tryouts.edit', $list->id) }}" class="">Edit</a>
                                             </span>
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">

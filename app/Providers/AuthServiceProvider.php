@@ -36,5 +36,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('register_access', function (User $user) {
             return ($user->role_id == 3);
         });
+        Gate::define('edit_tryout_access', function (User $user) {
+            return ($user->role_id == 1);
+        });
     }
 }

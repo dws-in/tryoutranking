@@ -8,7 +8,7 @@
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="block mb-8">
-                <a href="{{ route('tryouts.index') }}"
+                <a href="{{ route('myTryout.index') }}"
                     class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded">Back to list</a>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
@@ -28,9 +28,9 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
-                            <input type="text" name="description" id="description"
+                            <textarea type="text" name="description" id="description"
                                 class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                value="{{ old('description', $tryout->description) }}" />
+                                value="{{ old('description', $tryout->description) }}" ></textarea>
                             @error('description')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -38,10 +38,19 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="held" class="block font-medium text-sm text-gray-700">Held On</label>
-                            <input type="text" name="held" id="held"
+                            <input type="date" name="held" id="held"
                                 class="form-input rounded-md shadow-sm mt-1 block w-full"
                                 value="{{ old('held', $tryout->held) }}" />
                             @error('held')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="due" class="block font-medium text-sm text-gray-700">Due Date</label>
+                            <input type="date" name="due" id="due" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                value="{{ old('due', $tryout->due) }}" />
+                            @error('due')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>

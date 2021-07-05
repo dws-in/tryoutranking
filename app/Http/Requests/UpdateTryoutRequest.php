@@ -22,8 +22,11 @@ class UpdateTryoutRequest extends FormRequest
             'description' => [
                 'required', 'string',
             ],
-            'held' => [
-                'required', 'string',
+             'held' => [
+                'required', 'date',
+            ],
+            'due' => [
+                'required', 'date',
             ],
             'cluster_id' => [
                 'required','exists:clusters,id'

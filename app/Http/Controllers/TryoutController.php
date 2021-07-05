@@ -50,7 +50,7 @@ class TryoutController extends Controller
         Tryout::create($data);
         //$this->tryout->store($request);
         return redirect()->route('myTryout.index')
-                        ->with('success', 'Tryout Berhasil ditambah');
+                        ->with('message', 'Tryout Berhasil ditambah');
     }
 
     public function show($id)
@@ -72,7 +72,8 @@ class TryoutController extends Controller
     public function update(UpdateTryoutRequest $request, $id)
     {
         $this->tryout->update($request, $id);
-        return redirect()->route('tryouts.index');
+        return redirect()->route('myTryout.index')
+                        ->with('message', 'Tryout Berhasil diupdate');
     }
 
     public function destroy(Tryout $tryout)

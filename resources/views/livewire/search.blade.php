@@ -60,19 +60,19 @@
                                 </span>
                                 @can('tryouts_access')
                                 <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                    <a href="{{ route('tryouts.edit', $tryout->id) }}" class="">Edit</a>
-                                </span>
-                                <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     <a href="{{ route('participant.show', $tryout->id) }}" class="">Participant</a>
                                 </span>
-                                <form class="inline-block" action="{{ route('tryouts.destroy', $tryout->id) }}"
-                                    method="POST" onsubmit="return confirm('Delete selected item?');">
+                                @endcan
+                                @can('edit_tryout_access')
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    <a href="{{ route('tryouts.edit', $tryout->id) }}" class="">Edit</a>
+                                </span>
+                                <form class="inline-block" action="{{ route('tryouts.destroy', $tryout->id) }}" method="POST"
+                                    onsubmit="return confirm('Delete selected item?');">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="submit"
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                                    <input type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
                                         value="Delete">
                                 </form>
                                 @endcan
